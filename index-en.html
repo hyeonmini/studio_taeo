@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeSpend (New Name Coming Soon) - Lightning Fast Shared Expense Tracker</title>
+    <meta name="description" content="A real-time shared expense tracker for couples and families. Experience the lightning-fast input optimized for your daily tracking.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #5E5CE6; 
+            --primary-light: #7D7AFF;
+            --bg-dark: #000000;
+            --bg-card: rgba(28, 28, 30, 0.6);
+            --text-main: #FFFFFF;
+            --text-muted: #EBEBF5;
+            --text-secondary: rgba(235, 235, 245, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-1: #FF375F;
+            --accent-2: #32ADE6;
+            --accent-3: #30D158;
+            --accent-4: #FF9F0A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .glow-1 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(94,92,230,0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(255,55,95,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: float 14s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-badge {
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: #fff;
+            -webkit-text-fill-color: #fff;
+            letter-spacing: 0;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 80px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size:clamp(48px, 8vw, 84px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-text-gradient {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 700px;
+            word-break: keep-all;
+        }
+
+        .badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease;
+            cursor: default;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card.highlight {
+            border: 2px solid rgba(125, 122, 255, 0.5);
+            background: linear-gradient(145deg, rgba(40,40,45,0.8), rgba(28,28,30,0.6));
+            box-shadow: 0 10px 30px rgba(94,92,230,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .icon-box.purple { color: #BF5AF2; }
+        .icon-box.blue { color: #0A84FF; }
+        .icon-box.green { color: #30D158; }
+        .icon-box.orange { color: #FF9F0A; }
+        .icon-box.red { color: #FF453A; }
+        .icon-box.cyan { color: #64D2FF; }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 100px;
+            position: relative;
+            border-radius: 32px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .lang-switch {
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .lang-switch:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">
+                WeSpend <span class="logo-badge">New Name Coming Soon</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="index.html" class="lang-switch">KOR</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>The Fastest, Most Seamless<br><span class="hero-text-gradient">Shared Expense Tracker</span></h1>
+            <p>Start logging your expenses the second you open the app.<br>With our lightning-fast input and intuitive widgets, managing expenses with your partner or family has never been easier.</p>
+            
+            <div class="badges">
+                <div class="badge"> App Store Coming Soon</div>
+                <div class="badge">▶ Google Play Coming Soon</div>
+            </div>
+        </section>
+
+        <!-- Placeholder for app screenshot -->
+        <div class="hero-image-container">
+            <div style="text-align: center; opacity: 0.5;">
+                <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
+                <p>App Screenshot Rendering Area</p>
+            </div>
+        </div>
+
+        <section class="features">
+            <div class="section-header">
+                <h2>Log Your Annoying Expenses in 1 Second</h2>
+                <p>Consistency is key when managing personal finance.<br>We provide the fastest and most comfortable input experience so you never miss a receipt.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card highlight">
+                    <div class="icon-box purple">⚡️</div>
+                    <h3>Lightning-Fast Input (USP)</h3>
+                    <p>Log your spending instantly with our custom-built numeric keypad. Features like built-in calculator functions and a dedicated safe-delete (⌫) key guarantee the fastest entry speed.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box blue">👨‍👩‍👧‍👦</div>
+                    <h3>Shared Household Economy</h3>
+                    <p>Share a ledger with your loved ones using a simple 6-digit invite code. All entered records sync immediately in real-time, keeping everyone on the same page.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box cyan">✨</div>
+                    <h3>Instant Home Screen Widgets</h3>
+                    <p>Add expenses directly from your Home Screen or Lock Screen utilizing our powerful Numpad widget without even fully launching the app.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box green">💱</div>
+                    <h3>Multi-currency & Live Rates</h3>
+                    <p>Log in local currency while traveling abroad. We support over 50 global currencies and automatically calculate your base currency utilizing live exchange rates from the moment of purchase.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box orange">🎨</div>
+                    <h3>Custom Folders & Smart Filters</h3>
+                    <p>Personalize your categories with 16 preset colors. Easily analyze your spending behavior by filtering through payment methods (cash/card) or attribution (me/partner).</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box red">🔒</div>
+                    <h3>Secure & Simple Accounts</h3>
+                    <p>Sign up in a single tap via Apple or Google Sign-In—no typed email/password required. You can also explore all features safely using our Anonymous Tour Mode.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="terms-en.html">Terms of Service</a>
+                <a href="privacy-en.html">Privacy Policy</a>
+            </div>
+            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">Studio Taeo</p>
+            <p style="font-size: 14px; opacity: 0.5;">D-U-N-S® Number: 696528698</p>
+            <p style="font-size: 14px; opacity: 0.5; margin-top: 24px;">© 2026 Studio Taeo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach((card, i) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${i * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

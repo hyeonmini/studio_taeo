@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeSpend (새 이름 변경 예정) - 1초 만에 적는 공동 가계부</title>
+    <meta name="description" content="가족, 연인과 함께 쓰는 실시간 동기화 가계부. 빠른 입력에 특화된 직관적인 가계부로 지출 관리를 시작하세요.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #5E5CE6; 
+            --primary-light: #7D7AFF;
+            --bg-dark: #000000;
+            --bg-card: rgba(28, 28, 30, 0.6);
+            --text-main: #FFFFFF;
+            --text-muted: #EBEBF5;
+            --text-secondary: rgba(235, 235, 245, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-1: #FF375F;
+            --accent-2: #32ADE6;
+            --accent-3: #30D158;
+            --accent-4: #FF9F0A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .glow-1 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(94,92,230,0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(255,55,95,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: float 14s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-badge {
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: #fff;
+            -webkit-text-fill-color: #fff;
+            letter-spacing: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 80px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size:clamp(48px, 8vw, 84px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-text-gradient {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 700px;
+            word-break: keep-all;
+        }
+
+        .badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease;
+            cursor: default;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Highlight specific crucial USP card */
+        .card.highlight {
+            border: 2px solid rgba(125, 122, 255, 0.5);
+            background: linear-gradient(145deg, rgba(40,40,45,0.8), rgba(28,28,30,0.6));
+            box-shadow: 0 10px 30px rgba(94,92,230,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .icon-box.purple { color: #BF5AF2; }
+        .icon-box.blue { color: #0A84FF; }
+        .icon-box.green { color: #30D158; }
+        .icon-box.orange { color: #FF9F0A; }
+        .icon-box.red { color: #FF453A; }
+        .icon-box.cyan { color: #64D2FF; }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Hero Image Container */
+        .hero-image-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 100px;
+            position: relative;
+            border-radius: 32px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .lang-switch:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">
+                WeSpend <span class="logo-badge">새 이름 변경 예정</span>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="index-en.html" class="lang-switch">ENG</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>가장 빠르고 편안한<br><span class="hero-text-gradient">공동 가계부</span></h1>
+            <p>앱을 켜자마자 바로 지출을 입력하세요.<br>번개처럼 빠른 입력과 직관적인 위젯으로 가족, 연인과 함께 실시간으로 지출을 관리할 수 있습니다.</p>
+            
+            <div class="badges">
+                <div class="badge"> App Store 출시 예정</div>
+                <div class="badge">▶ Google Play 출시 예정</div>
+            </div>
+        </section>
+
+        <!-- Placeholder for app screenshot -->
+        <div class="hero-image-container">
+            <div style="text-align: center; opacity: 0.5;">
+                <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
+                <p>가계부 화면 스크린샷 렌더링 예정 영역</p>
+            </div>
+        </div>
+
+        <section class="features">
+            <div class="section-header">
+                <h2>귀찮았던 지출 기록을 1초 만에</h2>
+                <p>지출을 관리할 때 가장 중요한 것은 '꾸준함'입니다.<br>꾸준히 기록할 수 있도록 가장 빠르고 편안한 입력 환경을 제공합니다.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card highlight">
+                    <div class="icon-box purple">⚡️</div>
+                    <h3>번개처럼 빠른 입력 (USP)</h3>
+                    <p>직접 개발한 커스텀 숫자 키패드로 앱을 켜자마자 바로 금액을 입력하세요. 계산기 기능과 한 글자 안심 지우기(⌫)를 통해 가장 빠른 기록 속도를 보장합니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box blue">👨‍👩‍👧‍👦</div>
+                    <h3>함께 쓰는 공유 가계부</h3>
+                    <p>6자리 초대 코드만 있으면 가족이나 연인과 가계부를 공유할 수 있습니다. 입력된 내역은 실시간 동기화로 즉시 반영되며 수정 이력도 모두 남습니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box cyan">✨</div>
+                    <h3>홈 화면에서 즉시 입력</h3>
+                    <p>앱을 실행하지 않고 홈 화면이나 잠금 화면 위젯에서 Numpad로 바로 지출 금액을 입력하고 추가할 수 있습니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box green">💱</div>
+                    <h3>다중 통화 & 실시간 환율</h3>
+                    <p>해외 여행 시 현지 통화로 기록하세요. 50개 이상의 세계 통화를 지원하며, 기록 당시의 실시간 환율을 기준으로 메인 통화 지출로 자동 계산하여 보여줍니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box orange">🎨</div>
+                    <h3>커스텀 카테고리 & 스마트 필터</h3>
+                    <p>16가지 프리셋 컬러로 나만의 카테고리 폴더를 꾸며보세요. 결제 수단(현금/카드) 및 지출 주체(나/파트너)별로 손쉽게 필터링하여 지출 성향을 분석할 수 있습니다.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box red">🔒</div>
+                    <h3>안전하고 간편한 계정</h3>
+                    <p>이메일/비밀번호 입력 없이 Apple 로그인과 Google 로그인으로 터치 한 번에 가입할 수 있습니다. 익명 체험 모드로 먼저 모든 기능을 둘러볼 수도 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="terms.html">이용약관</a>
+                <a href="privacy.html">개인정보처리방침</a>
+            </div>
+            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">스튜디오 태오 (Studio Taeo)</p>
+            <p style="font-size: 14px; opacity: 0.5;">D-U-N-S® Number: 696528698</p>
+            <p style="font-size: 14px; opacity: 0.5; margin-top: 24px;">© 2026 Studio Taeo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach((card, i) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${i * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
