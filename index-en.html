@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeSpend (New Name Coming Soon) - Lightning Fast Shared Expense Tracker</title>
+    <title>WeSpend - Lightning Fast Shared Expense Tracker</title>
     <meta name="description" content="A real-time shared expense tracker for couples and families. Experience the lightning-fast input optimized for your daily tracking.">
     
     <!-- Fonts -->
@@ -300,18 +300,70 @@
             color: #fff;
         }
 
-        .lang-switch {
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-switch-btn {
             font-size: 14px;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             background: rgba(255,255,255,0.1);
             color: #fff;
-            text-decoration: none;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             transition: all 0.2s;
+            font-weight: 500;
         }
-        .lang-switch:hover {
+
+        .lang-switch-btn:hover {
             background: rgba(255,255,255,0.2);
         }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: rgba(28, 28, 30, 0.95);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            min-width: 140px;
+            max-height: 300px;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            list-style: none;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            padding: 8px 0;
+        }
+
+        .lang-switcher:hover .lang-dropdown,
+        .lang-switcher:focus-within .lang-dropdown {
+            display: block;
+        }
+
+        .lang-dropdown li a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lang-dropdown li a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* End lang-switcher */
 
         @media (max-width: 992px) {
             .hero h1 {
@@ -330,10 +382,19 @@
     <div class="container">
         <nav>
             <div class="logo">
-                WeSpend <span class="logo-badge">New Name Coming Soon</span>
+                WeSpend
             </div>
-            <div style="display: flex; gap: 12px; align-items: center;">
-                <a href="index.html" class="lang-switch">KOR</a>
+            <div style="display: flex; gap: 12px; align-items: center; position: relative;">
+                <div class="lang-switcher">
+                    <button class="lang-switch-btn" aria-haspopup="listbox" aria-expanded="false">
+                        <span style="font-size: 16px;">🌐</span> English
+                    </button>
+                    <ul class="lang-dropdown" role="listbox">
+                        <li role="option"><a href="/">한국어</a></li>
+                        <li role="option"><a href="/en/">English</a></li>
+                        <!-- Dropdown items will be injected by the build script -->
+                    </ul>
+                </div>
             </div>
         </nav>
 

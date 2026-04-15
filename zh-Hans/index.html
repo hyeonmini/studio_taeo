@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeSpend - 1초 만에 적는 공동 가계부</title>
-    <meta name="description" content="가족, 연인과 함께 쓰는 실시간 동기화 가계부. 빠른 입력에 특화된 직관적인 가계부로 지출 관리를 시작하세요.">
+    <title>WeSpend - 闪电般快速的共享费用追踪器</title>
+    <meta name="description" content="适合夫妻和家庭的实时共享费用跟踪器。体验针对您的日常跟踪而优化的闪电般的输入。">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
         }
 
         body {
@@ -79,14 +79,12 @@
             100% { transform: translate(10%, 10%) scale(1.1); }
         }
 
-        /* Layout Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -119,7 +117,6 @@
             letter-spacing: 0;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -177,7 +174,6 @@
             background: rgba(255,255,255,0.15);
         }
 
-        /* Features Section */
         .features {
             padding: 100px 0;
         }
@@ -217,7 +213,6 @@
             overflow: hidden;
         }
         
-        /* Highlight specific crucial USP card */
         .card.highlight {
             border: 2px solid rgba(125, 122, 255, 0.5);
             background: linear-gradient(145deg, rgba(40,40,45,0.8), rgba(28,28,30,0.6));
@@ -262,7 +257,6 @@
             line-height: 1.6;
         }
 
-        /* Hero Image Container */
         .hero-image-container {
             width: 100%;
             max-width: 800px;
@@ -280,7 +274,6 @@
             height: 300px;
         }
 
-        /* Footer */
         footer {
             padding: 60px 0;
             border-top: 1px solid var(--glass-border);
@@ -307,10 +300,14 @@
             color: #fff;
         }
 
-        /* Language Switcher */
-        .lang-switch {
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-switch-btn {
             font-size: 14px;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             background: rgba(255,255,255,0.1);
             color: #fff;
@@ -368,7 +365,6 @@
 
         /* End lang-switcher */
 
-        /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 48px;
@@ -391,7 +387,7 @@
             <div style="display: flex; gap: 12px; align-items: center; position: relative;">
                 <div class="lang-switcher">
                     <button class="lang-switch-btn" aria-haspopup="listbox" aria-expanded="false">
-                        <span style="font-size: 16px;">🌐</span> 선택
+                        <span style="font-size: 16px;">🌐</span> 简体中文
                     </button>
                     <ul class="lang-dropdown" role="listbox">
     <li role="option"><a href="/">한국어</a></li>
@@ -436,12 +432,12 @@
         </nav>
 
         <section class="hero">
-            <h1>가장 빠르고 편안한<br><span class="hero-text-gradient">공동 가계부</span></h1>
-            <p>앱을 켜자마자 바로 지출을 입력하세요.<br>번개처럼 빠른 입력과 직관적인 위젯으로 가족, 연인과 함께 실시간으로 지출을 관리할 수 있습니다.</p>
+            <h1>最快、最无缝<br><span class="hero-text-gradient">共享费用跟踪器</span></h1>
+            <p>打开应用程序后立即开始记录您的支出。<br>借助我们闪电般快速的输入和直观的小部件，与您的伴侣或家人管理费用从未如此简单。</p>
             
             <div class="badges">
-                <div class="badge"> App Store 출시 예정</div>
-                <div class="badge">▶ Google Play 출시 예정</div>
+                <div class="badge"> App Store Coming Soon</div>
+                <div class="badge">▶ Google Play Coming Soon</div>
             </div>
         </section>
 
@@ -449,61 +445,61 @@
         <div class="hero-image-container">
             <div style="text-align: center; opacity: 0.5;">
                 <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
-                <p>가계부 화면 스크린샷 렌더링 예정 영역</p>
+                <p>App Screenshot Rendering Area</p>
             </div>
         </div>
 
         <section class="features">
             <div class="section-header">
-                <h2>귀찮았던 지출 기록을 1초 만에</h2>
-                <p>지출을 관리할 때 가장 중요한 것은 '꾸준함'입니다.<br>꾸준히 기록할 수 있도록 가장 빠르고 편안한 입력 환경을 제공합니다.</p>
+                <h2>1 秒记录你烦人的开支</h2>
+                <p>管理个人财务时，一致性是关键。<br>我们提供最快、最舒适的输入体验，让您永远不会错过收据。</p>
             </div>
             
             <div class="grid">
                 <div class="card highlight">
                     <div class="icon-box purple">⚡️</div>
-                    <h3>번개처럼 빠른 입력</h3>
-                    <p>직접 개발한 커스텀 숫자 키패드로 앱을 켜자마자 바로 금액을 입력하세요. 계산기 기능과 한 글자 안심 지우기(⌫)를 통해 가장 빠른 기록 속도를 보장합니다.</p>
+                    <h3>闪电般的快速输入</h3>
+                    <p>使用我们定制的数字键盘立即记录您的支出。内置计算器功能和专用安全删除 (⌫) 键等功能保证了最快的输入速度。</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box blue">👨‍👩‍👧‍👦</div>
-                    <h3>함께 쓰는 공유 가계부</h3>
-                    <p>6자리 초대 코드만 있으면 가족이나 연인과 가계부를 공유할 수 있습니다. 입력된 내역은 실시간 동기화로 즉시 반영되며 수정 이력도 모두 남습니다.</p>
+                    <h3>共享家庭经济</h3>
+                    <p>使用简单的 6 位数邀请码与您所爱的人共享账本。所有输入的记录都会立即实时同步，使每个人都保持在同一页面上。</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box cyan">✨</div>
-                    <h3>홈 화면에서 즉시 입력</h3>
-                    <p>앱을 실행하지 않고 홈 화면이나 잠금 화면 위젯에서 Numpad로 바로 지출 금액을 입력하고 추가할 수 있습니다.</p>
+                    <h3>即时主屏幕小部件</h3>
+                    <p>利用我们强大的数字键盘小部件直接从主屏幕或锁定屏幕添加费用，甚至无需完全启动应用程序。</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box green">💱</div>
-                    <h3>다중 통화 & 실시간 환율</h3>
-                    <p>해외 여행 시 현지 통화로 기록하세요. 50개 이상의 세계 통화를 지원하며, 기록 당시의 실시간 환율을 기준으로 메인 통화 지출로 자동 계산하여 보여줍니다.</p>
+                    <h3>多币种和实时汇率</h3>
+                    <p>出国旅行时以当地货币登录。我们支持 50 多种全球货币，并从购买之日起利用实时汇率自动计算您的基础货币。</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box orange">🎨</div>
-                    <h3>커스텀 카테고리 & 스마트 필터</h3>
-                    <p>16가지 프리셋 컬러로 나만의 카테고리 폴더를 꾸며보세요. 결제 수단(현금/카드) 및 지출 주체(나/파트너)별로 손쉽게 필터링하여 지출 성향을 분석할 수 있습니다.</p>
+                    <h3>自定义文件夹和智能过滤器</h3>
+                    <p>使用 16 种预设颜色个性化您的类别。通过筛选支付方式（现金/卡）或归因（我/合作伙伴），轻松分析您的消费行为。</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box red">🔒</div>
-                    <h3>안전하고 간편한 계정</h3>
-                    <p>이메일/비밀번호 입력 없이 Apple 로그인과 Google 로그인으로 터치 한 번에 가입할 수 있습니다. 익명 체험 모드로 먼저 모든 기능을 둘러볼 수도 있습니다.</p>
+                    <h3>安全且简单的账户</h3>
+                    <p>通过 Apple 或 Google 登录，只需点击一下即可注册，无需输入电子邮件/密码。您还可以使用我们的匿名游览模式安全地探索所有功能。</p>
                 </div>
             </div>
         </section>
 
         <footer>
             <div class="footer-links">
-                <a href="terms.html">이용약관</a>
-                <a href="privacy.html">개인정보처리방침</a>
+                <a href="/terms-en.html">服务条款</a>
+                <a href="/privacy-en.html">隐私政策</a>
             </div>
-            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">스튜디오 태오 (Studio Taeo)</p>
+            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">Studio Taeo</p>
             <p style="font-size: 14px; opacity: 0.5;">D-U-N-S® Number: 696528698</p>
             <p style="font-size: 14px; opacity: 0.5; margin-top: 24px;">© 2026 Studio Taeo. All rights reserved.</p>
         </footer>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="iw">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeSpend - 1초 만에 적는 공동 가계부</title>
-    <meta name="description" content="가족, 연인과 함께 쓰는 실시간 동기화 가계부. 빠른 입력에 특화된 직관적인 가계부로 지출 관리를 시작하세요.">
+    <title>WeSpend - מעקב אחר הוצאות משותפות במהירות בזק</title>
+    <meta name="description" content="מעקב אחר הוצאות משותפות בזמן אמת לזוגות ומשפחות. חווה את הקלט המהיר המותאם למעקב היומי שלך.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
         }
 
         body {
@@ -79,14 +79,12 @@
             100% { transform: translate(10%, 10%) scale(1.1); }
         }
 
-        /* Layout Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -119,7 +117,6 @@
             letter-spacing: 0;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -177,7 +174,6 @@
             background: rgba(255,255,255,0.15);
         }
 
-        /* Features Section */
         .features {
             padding: 100px 0;
         }
@@ -217,7 +213,6 @@
             overflow: hidden;
         }
         
-        /* Highlight specific crucial USP card */
         .card.highlight {
             border: 2px solid rgba(125, 122, 255, 0.5);
             background: linear-gradient(145deg, rgba(40,40,45,0.8), rgba(28,28,30,0.6));
@@ -262,7 +257,6 @@
             line-height: 1.6;
         }
 
-        /* Hero Image Container */
         .hero-image-container {
             width: 100%;
             max-width: 800px;
@@ -280,7 +274,6 @@
             height: 300px;
         }
 
-        /* Footer */
         footer {
             padding: 60px 0;
             border-top: 1px solid var(--glass-border);
@@ -307,10 +300,14 @@
             color: #fff;
         }
 
-        /* Language Switcher */
-        .lang-switch {
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-switch-btn {
             font-size: 14px;
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
             background: rgba(255,255,255,0.1);
             color: #fff;
@@ -368,7 +365,6 @@
 
         /* End lang-switcher */
 
-        /* Responsive */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 48px;
@@ -391,7 +387,7 @@
             <div style="display: flex; gap: 12px; align-items: center; position: relative;">
                 <div class="lang-switcher">
                     <button class="lang-switch-btn" aria-haspopup="listbox" aria-expanded="false">
-                        <span style="font-size: 16px;">🌐</span> 선택
+                        <span style="font-size: 16px;">🌐</span> עברית
                     </button>
                     <ul class="lang-dropdown" role="listbox">
     <li role="option"><a href="/">한국어</a></li>
@@ -436,12 +432,12 @@
         </nav>
 
         <section class="hero">
-            <h1>가장 빠르고 편안한<br><span class="hero-text-gradient">공동 가계부</span></h1>
-            <p>앱을 켜자마자 바로 지출을 입력하세요.<br>번개처럼 빠른 입력과 직관적인 위젯으로 가족, 연인과 함께 실시간으로 지출을 관리할 수 있습니다.</p>
+            <h1>הכי מהיר, הכי חלק<br><span class="hero-text-gradient">מעקב אחר הוצאות משותפות</span></h1>
+            <p>התחל לרשום את ההוצאות שלך בשנייה שאתה פותח את האפליקציה.<br>עם הקלט המהיר והווידג'טים האינטואיטיביים שלנו, ניהול ההוצאות עם בן הזוג או המשפחה שלך מעולם לא היה קל יותר.</p>
             
             <div class="badges">
-                <div class="badge"> App Store 출시 예정</div>
-                <div class="badge">▶ Google Play 출시 예정</div>
+                <div class="badge"> App Store Coming Soon</div>
+                <div class="badge">▶ Google Play Coming Soon</div>
             </div>
         </section>
 
@@ -449,61 +445,61 @@
         <div class="hero-image-container">
             <div style="text-align: center; opacity: 0.5;">
                 <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
-                <p>가계부 화면 스크린샷 렌더링 예정 영역</p>
+                <p>App Screenshot Rendering Area</p>
             </div>
         </div>
 
         <section class="features">
             <div class="section-header">
-                <h2>귀찮았던 지출 기록을 1초 만에</h2>
-                <p>지출을 관리할 때 가장 중요한 것은 '꾸준함'입니다.<br>꾸준히 기록할 수 있도록 가장 빠르고 편안한 입력 환경을 제공합니다.</p>
+                <h2>רשום את ההוצאות המעצבנות שלך בשנייה אחת</h2>
+                <p>עקביות היא המפתח בניהול כספים אישיים.<br>אנו מספקים את חווית הקלט המהירה והנוחה ביותר כך שלעולם לא תחמיץ קבלה.</p>
             </div>
             
             <div class="grid">
                 <div class="card highlight">
                     <div class="icon-box purple">⚡️</div>
-                    <h3>번개처럼 빠른 입력</h3>
-                    <p>직접 개발한 커스텀 숫자 키패드로 앱을 켜자마자 바로 금액을 입력하세요. 계산기 기능과 한 글자 안심 지우기(⌫)를 통해 가장 빠른 기록 속도를 보장합니다.</p>
+                    <h3>קלט מהיר</h3>
+                    <p>רשום את ההוצאות שלך באופן מיידי עם לוח המקשים המספרי שלנו בהתאמה אישית. תכונות כמו פונקציות מחשבון מובנות ומפתח ייעודי למחיקה בטוחה (⌫) מבטיחות את מהירות הכניסה המהירה ביותר.</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box blue">👨‍👩‍👧‍👦</div>
-                    <h3>함께 쓰는 공유 가계부</h3>
-                    <p>6자리 초대 코드만 있으면 가족이나 연인과 가계부를 공유할 수 있습니다. 입력된 내역은 실시간 동기화로 즉시 반영되며 수정 이력도 모두 남습니다.</p>
+                    <h3>משק בית משותף</h3>
+                    <p>שתף ספר חשבונות עם יקיריכם באמצעות קוד הזמנה פשוט בן 6 ספרות. כל הרשומות שהוזנו מסתנכרנות מיד בזמן אמת, ומשאירים את כולם באותו עמוד.</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box cyan">✨</div>
-                    <h3>홈 화면에서 즉시 입력</h3>
-                    <p>앱을 실행하지 않고 홈 화면이나 잠금 화면 위젯에서 Numpad로 바로 지출 금액을 입력하고 추가할 수 있습니다.</p>
+                    <h3>ווידג'טים מיידיים של מסך הבית</h3>
+                    <p>הוסף הוצאות ישירות ממסך הבית או מסך הנעילה שלך תוך שימוש בווידג'ט Numpad החזק שלנו אפילו מבלי להפעיל את האפליקציה במלואה.</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box green">💱</div>
-                    <h3>다중 통화 & 실시간 환율</h3>
-                    <p>해외 여행 시 현지 통화로 기록하세요. 50개 이상의 세계 통화를 지원하며, 기록 당시의 실시간 환율을 기준으로 메인 통화 지출로 자동 계산하여 보여줍니다.</p>
+                    <h3>ריבוי מטבעות ותעריפים חיים</h3>
+                    <p>היכנס למטבע מקומי בזמן נסיעה לחו"ל. אנו תומכים ביותר מ-50 מטבעות גלובליים ומחשבים אוטומטית את מטבע הבסיס שלך תוך שימוש בשערי חליפין חיים מרגע הרכישה.</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box orange">🎨</div>
-                    <h3>커스텀 카테고리 & 스마트 필터</h3>
-                    <p>16가지 프리셋 컬러로 나만의 카테고리 폴더를 꾸며보세요. 결제 수단(현금/카드) 및 지출 주체(나/파트너)별로 손쉽게 필터링하여 지출 성향을 분석할 수 있습니다.</p>
+                    <h3>תיקיות מותאמות אישית ומסננים חכמים</h3>
+                    <p>התאם אישית את הקטגוריות שלך עם 16 צבעים מוגדרים מראש. נתח בקלות את התנהגות ההוצאות שלך על ידי סינון דרך אמצעי תשלום (מזומן/כרטיס) או ייחוס (אני/שותף).</p>
                 </div>
 
                 <div class="card">
                     <div class="icon-box red">🔒</div>
-                    <h3>안전하고 간편한 계정</h3>
-                    <p>이메일/비밀번호 입력 없이 Apple 로그인과 Google 로그인으로 터치 한 번에 가입할 수 있습니다. 익명 체험 모드로 먼저 모든 기능을 둘러볼 수도 있습니다.</p>
+                    <h3>חשבונות מאובטחים ופשוטים</h3>
+                    <p>הירשם בהקשה אחת דרך Apple או Google Sign-In - אין צורך במייל/סיסמה מוקלדים. אתה יכול גם לחקור את כל התכונות בבטחה באמצעות מצב הסיור האנונימי שלנו.</p>
                 </div>
             </div>
         </section>
 
         <footer>
             <div class="footer-links">
-                <a href="terms.html">이용약관</a>
-                <a href="privacy.html">개인정보처리방침</a>
+                <a href="/terms-en.html">תנאים והגבלות</a>
+                <a href="/privacy-en.html">מדיניות פרטיות</a>
             </div>
-            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">스튜디오 태오 (Studio Taeo)</p>
+            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">Studio Taeo</p>
             <p style="font-size: 14px; opacity: 0.5;">D-U-N-S® Number: 696528698</p>
             <p style="font-size: 14px; opacity: 0.5; margin-top: 24px;">© 2026 Studio Taeo. All rights reserved.</p>
         </footer>
