@@ -189,5 +189,18 @@
 </ul>
 <hr />
 <p><em>본 이용약관은 2026년 2월 18일부터 시행됩니다.</em></p>
+
+    <script>
+        document.addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            const btn = e.target.closest('.lang-switch-btn');
+            if (btn) {
+                e.preventDefault();
+                dropdown.classList.toggle('show');
+            } else if (dropdown && !e.target.closest('.lang-dropdown')) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>

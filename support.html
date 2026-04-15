@@ -67,5 +67,18 @@
     <hr>
 
     <p style="color: #888; font-size: 0.85rem;">&copy; 2026 Studio Taeo. All rights reserved.</p>
+
+    <script>
+        document.addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            const btn = e.target.closest('.lang-switch-btn');
+            if (btn) {
+                e.preventDefault();
+                dropdown.classList.toggle('show');
+            } else if (dropdown && !e.target.closest('.lang-dropdown')) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
