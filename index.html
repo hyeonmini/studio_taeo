@@ -265,19 +265,23 @@
         /* Hero Image Container */
         .hero-image-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 320px;
             margin: 0 auto 100px;
             position: relative;
-            border-radius: 32px;
+            border-radius: 40px;
             background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
             overflow: hidden;
-            height: 300px;
+            border: 8px solid #222;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Footer */
@@ -413,6 +417,8 @@
     <li role="option"><a href="/id/">Bahasa Indonesia</a></li>
     <li role="option"><a href="/it/">Italiano</a></li>
     <li role="option"><a href="/ja/">日本語</a></li>
+    <li role="option"><a href="/lt/">Lietuvių</a></li>
+    <li role="option"><a href="/lv/">Latviešu</a></li>
     <li role="option"><a href="/ms/">Bahasa Melayu</a></li>
     <li role="option"><a href="/nl-NL/">Nederlands</a></li>
     <li role="option"><a href="/no/">Norsk</a></li>
@@ -439,17 +445,16 @@
             <p>앱을 켜자마자 바로 지출을 입력하세요.<br>번개처럼 빠른 입력과 직관적인 위젯으로 가족, 연인과 함께 실시간으로 지출을 관리할 수 있습니다.</p>
             
             <div class="badges">
-                <div class="badge"> App Store 출시 예정</div>
+                <a href="https://apps.apple.com/app/id6760176874" class="badge" target="_blank" style="text-decoration: none; color: inherit; cursor: pointer;">
+                     App Store에서 다운로드
+                </a>
                 <div class="badge">▶ Google Play 출시 예정</div>
             </div>
         </section>
 
-        <!-- Placeholder for app screenshot -->
+        <!-- App screenshot -->
         <div class="hero-image-container">
-            <div style="text-align: center; opacity: 0.5;">
-                <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
-                <p>가계부 화면 스크린샷 렌더링 예정 영역</p>
-            </div>
+            <img src="screenshot.png" alt="WeSpend App Screenshot" loading="lazy">
         </div>
 
         <section class="features">

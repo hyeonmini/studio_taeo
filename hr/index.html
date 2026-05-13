@@ -259,19 +259,23 @@
 
         .hero-image-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 320px;
             margin: 0 auto 100px;
             position: relative;
-            border-radius: 32px;
+            border-radius: 40px;
             background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
             overflow: hidden;
-            height: 300px;
+            border: 8px solid #222;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         footer {
@@ -409,6 +413,8 @@
     <li role="option"><a href="/id/">Bahasa Indonesia</a></li>
     <li role="option"><a href="/it/">Italiano</a></li>
     <li role="option"><a href="/ja/">日本語</a></li>
+    <li role="option"><a href="/lt/">Lietuvių</a></li>
+    <li role="option"><a href="/lv/">Latviešu</a></li>
     <li role="option"><a href="/ms/">Bahasa Melayu</a></li>
     <li role="option"><a href="/nl-NL/">Nederlands</a></li>
     <li role="option"><a href="/no/">Norsk</a></li>
@@ -435,17 +441,16 @@
             <p>Počnite bilježiti svoje troškove čim otvorite aplikaciju.<br>Uz naš munjevito brz unos i intuitivne widgete, upravljanje troškovima s vašim partnerom ili obitelji nikada nije bilo lakše.</p>
             
             <div class="badges">
-                <div class="badge"> App Store Coming Soon</div>
-                <div class="badge">▶ Google Play Coming Soon</div>
+                <a href="https://apps.apple.com/app/id6760176874" class="badge" target="_blank" style="text-decoration: none; color: inherit; cursor: pointer;">
+                     Preuzmite na App Storeu
+                </a>
+                <div class="badge">▶ Google Play uskoro</div>
             </div>
         </section>
 
-        <!-- Placeholder for app screenshot -->
+        <!-- App screenshot -->
         <div class="hero-image-container">
-            <div style="text-align: center; opacity: 0.5;">
-                <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
-                <p>App Screenshot Rendering Area</p>
-            </div>
+            <img src="screenshot.png" alt="WeSpend App Screenshot" loading="lazy">
         </div>
 
         <section class="features">

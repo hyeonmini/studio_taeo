@@ -8,7 +8,7 @@ locale_map = {
     'ar-SA': 'ar', 'ca': 'ca', 'cs': 'cs', 'da': 'da', 'de-DE': 'de', 'el': 'el', 
     'en-US': 'en', 'es-ES': 'es', 'es-MX': 'es', 'fi': 'fi', 'fr-CA': 'fr', 
     'fr-FR': 'fr', 'he': 'iw', 'hi': 'hi', 'hr': 'hr', 'hu': 'hu', 'id': 'id', 
-    'it': 'it', 'ja': 'ja', 'ko': 'ko', 'ms': 'ms', 'nl-NL': 'nl', 'no': 'no', 
+    'it': 'it', 'ja': 'ja', 'ko': 'ko', 'lt': 'lt', 'lv': 'lv', 'ms': 'ms', 'nl-NL': 'nl', 'no': 'no', 
     'pl': 'pl', 'pt-BR': 'pt', 'pt-PT': 'pt', 'ro': 'ro', 'ru': 'ru', 'sk': 'sk', 
     'sv': 'sv', 'th': 'th', 'tr': 'tr', 'uk': 'uk', 'vi': 'vi', 
     'zh-Hans': 'zh-CN', 'zh-Hant': 'zh-TW'
@@ -20,7 +20,7 @@ lang_names = {
     'el': 'Ελληνικά', 'en-US': 'English (US)', 'es-ES': 'Español (ES)', 'es-MX': 'Español (MX)', 
     'fi': 'Suomi', 'fr-CA': 'Français (CA)', 'fr-FR': 'Français (FR)', 'he': 'עברית', 
     'hi': 'हिन्दी', 'hr': 'Hrvatski', 'hu': 'Magyar', 'id': 'Bahasa Indonesia', 
-    'it': 'Italiano', 'ja': '日本語', 'ko': '한국어', 'ms': 'Bahasa Melayu', 
+    'it': 'Italiano', 'ja': '日本語', 'ko': '한국어', 'lt': 'Lietuvių', 'lv': 'Latviešu', 'ms': 'Bahasa Melayu', 
     'nl-NL': 'Nederlands', 'no': 'Norsk', 'pl': 'Polski', 'pt-BR': 'Português (BR)', 
     'pt-PT': 'Português (PT)', 'ro': 'Română', 'ru': 'Русский', 'sk': 'Slovenčina', 
     'sv': 'Svenska', 'th': 'ไทย', 'tr': 'Türkçe', 'uk': 'Українська', 'vi': 'Tiếng Việt', 
@@ -50,7 +50,9 @@ texts_to_translate = [
     "Secure & Simple Accounts",
     "Sign up in a single tap via Apple or Google Sign-In—no typed email/password required. You can also explore all features safely using our Anonymous Tour Mode.",
     "Terms of Service",
-    "Privacy Policy"
+    "Privacy Policy",
+    "Download on the App Store",
+    "Google Play Coming Soon"
 ]
 
 def build():
@@ -118,6 +120,11 @@ def build():
         with open(os.path.join(out_dir, 'index.html'), 'w', encoding='utf-8') as f:
             f.write(out_html)
 
+        # Copy screenshot
+        screenshot_src = f'/Volumes/DEV_SSD/prj/wespend/darwin/fastlane/screenshots/{fastlane_loc}/iPhone 17 Pro Max-01_Home.png'
+        if os.path.exists(screenshot_src):
+            shutil.copy2(screenshot_src, os.path.join(out_dir, 'screenshot.png'))
+
     # Finally update English fallback dir /en/
     en_dir = os.path.join(root_dir, 'en')
     os.makedirs(en_dir, exist_ok=True)
@@ -131,6 +138,10 @@ def build():
     with open(os.path.join(en_dir, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(en_html)
 
+    screenshot_en = '/Volumes/DEV_SSD/prj/wespend/darwin/fastlane/screenshots/en-US/iPhone 17 Pro Max-01_Home.png'
+    if os.path.exists(screenshot_en):
+        shutil.copy2(screenshot_en, os.path.join(en_dir, 'screenshot.png'))
+
     # Update Korean root index.html dropdown too
     with open(os.path.join(root_dir, 'index.html'), 'r', encoding='utf-8') as f:
         ko_html = f.read()
@@ -140,6 +151,10 @@ def build():
         ko_html = ko_html[:s_idx] + dropdown_html + ko_html[e_idx+len(end_marker):]
     with open(os.path.join(root_dir, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(ko_html)
+
+    screenshot_ko = '/Volumes/DEV_SSD/prj/wespend/darwin/fastlane/screenshots/ko/iPhone 17 Pro Max-01_Home.png'
+    if os.path.exists(screenshot_ko):
+        shutil.copy2(screenshot_ko, os.path.join(root_dir, 'screenshot.png'))
 
 if __name__ == "__main__":
     build()

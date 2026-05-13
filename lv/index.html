@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeSpend — zibens ātrs dalīto izdevumu izsekotājs</title>
+    <meta name="description" content="Reāllaika koplietošanas izdevumu izsekotājs pāriem un ģimenēm. Izbaudiet zibens ātru ievadi, kas optimizēta jūsu ikdienas izsekošanai.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #5E5CE6; 
+            --primary-light: #7D7AFF;
+            --bg-dark: #000000;
+            --bg-card: rgba(28, 28, 30, 0.6);
+            --text-main: #FFFFFF;
+            --text-muted: #EBEBF5;
+            --text-secondary: rgba(235, 235, 245, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-1: #FF375F;
+            --accent-2: #32ADE6;
+            --accent-3: #30D158;
+            --accent-4: #FF9F0A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .glow-1 {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(94,92,230,0.3) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(255,55,95,0.2) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            animation: float 14s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff, #a5a5a5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-badge {
+            font-size: 13px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: #fff;
+            -webkit-text-fill-color: #fff;
+            letter-spacing: 0;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 0 80px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size:clamp(48px, 8vw, 84px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-text-gradient {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 700px;
+            word-break: keep-all;
+        }
+
+        .badges {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease;
+            cursor: default;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .features {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card.highlight {
+            border: 2px solid rgba(125, 122, 255, 0.5);
+            background: linear-gradient(145deg, rgba(40,40,45,0.8), rgba(28,28,30,0.6));
+            box-shadow: 0 10px 30px rgba(94,92,230,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .icon-box.purple { color: #BF5AF2; }
+        .icon-box.blue { color: #0A84FF; }
+        .icon-box.green { color: #30D158; }
+        .icon-box.orange { color: #FF9F0A; }
+        .icon-box.red { color: #FF453A; }
+        .icon-box.cyan { color: #64D2FF; }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto 100px;
+            position: relative;
+            border-radius: 40px;
+            background: rgba(0,0,0,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 8px solid #222;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .lang-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-switch-btn {
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .lang-switch-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: rgba(28, 28, 30, 0.95);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            min-width: 140px;
+            max-height: 300px;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            list-style: none;
+            display: none;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            padding: 8px 0;
+        }
+
+        .lang-dropdown.show {
+            display: block;
+        }
+
+        .lang-dropdown li a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .lang-dropdown li a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* End lang-switcher */
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <div class="container">
+        <nav>
+            <div class="logo">
+                WeSpend
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center; position: relative;">
+                <div class="lang-switcher">
+                    <button class="lang-switch-btn" aria-haspopup="listbox" aria-expanded="false">
+                        <span style="font-size: 16px;">🌐</span> Latviešu
+                    </button>
+                    <ul class="lang-dropdown" role="listbox">
+    <li role="option"><a href="/">한국어</a></li>
+    <li role="option"><a href="/en/">English</a></li>
+    <li role="option"><a href="/ar-SA/">العربية</a></li>
+    <li role="option"><a href="/ca/">Català</a></li>
+    <li role="option"><a href="/cs/">Čeština</a></li>
+    <li role="option"><a href="/da/">Dansk</a></li>
+    <li role="option"><a href="/de-DE/">Deutsch</a></li>
+    <li role="option"><a href="/el/">Ελληνικά</a></li>
+    <li role="option"><a href="/es-ES/">Español (ES)</a></li>
+    <li role="option"><a href="/es-MX/">Español (MX)</a></li>
+    <li role="option"><a href="/fi/">Suomi</a></li>
+    <li role="option"><a href="/fr-CA/">Français (CA)</a></li>
+    <li role="option"><a href="/fr-FR/">Français (FR)</a></li>
+    <li role="option"><a href="/he/">עברית</a></li>
+    <li role="option"><a href="/hi/">हिन्दी</a></li>
+    <li role="option"><a href="/hr/">Hrvatski</a></li>
+    <li role="option"><a href="/hu/">Magyar</a></li>
+    <li role="option"><a href="/id/">Bahasa Indonesia</a></li>
+    <li role="option"><a href="/it/">Italiano</a></li>
+    <li role="option"><a href="/ja/">日本語</a></li>
+    <li role="option"><a href="/lt/">Lietuvių</a></li>
+    <li role="option"><a href="/lv/">Latviešu</a></li>
+    <li role="option"><a href="/ms/">Bahasa Melayu</a></li>
+    <li role="option"><a href="/nl-NL/">Nederlands</a></li>
+    <li role="option"><a href="/no/">Norsk</a></li>
+    <li role="option"><a href="/pl/">Polski</a></li>
+    <li role="option"><a href="/pt-BR/">Português (BR)</a></li>
+    <li role="option"><a href="/pt-PT/">Português (PT)</a></li>
+    <li role="option"><a href="/ro/">Română</a></li>
+    <li role="option"><a href="/ru/">Русский</a></li>
+    <li role="option"><a href="/sk/">Slovenčina</a></li>
+    <li role="option"><a href="/sv/">Svenska</a></li>
+    <li role="option"><a href="/th/">ไทย</a></li>
+    <li role="option"><a href="/tr/">Türkçe</a></li>
+    <li role="option"><a href="/uk/">Українська</a></li>
+    <li role="option"><a href="/vi/">Tiếng Việt</a></li>
+    <li role="option"><a href="/zh-Hans/">简体中文</a></li>
+    <li role="option"><a href="/zh-Hant/">繁體中文</a></li>
+</ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>Ātrākais, nevainojamākais<br><span class="hero-text-gradient">Dalīto izdevumu izsekotājs</span></h1>
+            <p>Sāciet reģistrēt savus izdevumus, kad atverat lietotni.<br>Izmantojot mūsu zibensātro ievadi un intuitīvos logrīkus, pārvaldīt izdevumus kopā ar partneri vai ģimeni nekad nav bijis tik vienkārši.</p>
+            
+            <div class="badges">
+                <a href="https://apps.apple.com/app/id6760176874" class="badge" target="_blank" style="text-decoration: none; color: inherit; cursor: pointer;">
+                     Lejupielādējiet no App Store
+                </a>
+                <div class="badge">▶ Google Play drīzumā</div>
+            </div>
+        </section>
+
+        <!-- App screenshot -->
+        <div class="hero-image-container">
+            <img src="screenshot.png" alt="WeSpend App Screenshot" loading="lazy">
+        </div>
+
+        <section class="features">
+            <div class="section-header">
+                <h2>Reģistrējiet savus kaitinošos izdevumus 1 sekundē</h2>
+                <p>Konsekvence ir galvenais, pārvaldot personīgās finanses.<br>Mēs piedāvājam ātrāko un ērtāko ievades pieredzi, lai jūs nekad nepalaistu garām kvīti.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card highlight">
+                    <div class="icon-box purple">⚡️</div>
+                    <h3>Zibens ātra ievade</h3>
+                    <p>Reģistrējiet savus izdevumus uzreiz, izmantojot mūsu īpaši izveidoto ciparu tastatūru. Tādas funkcijas kā iebūvētās kalkulatora funkcijas un speciāla droša dzēšanas (⌫) atslēga garantē ātrāko ievades ātrumu.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box blue">👨‍👩‍👧‍👦</div>
+                    <h3>Kopējā mājsaimniecības ekonomika</h3>
+                    <p>Kopīgojiet virsgrāmatu ar saviem mīļajiem, izmantojot vienkāršu 6 ciparu ielūguma kodu. Visi ievadītie ieraksti tiek nekavējoties sinhronizēti reāllaikā, saglabājot visus tajā pašā lapā.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box cyan">✨</div>
+                    <h3>Tūlītēji sākuma ekrāna logrīki</h3>
+                    <p>Pievienojiet izdevumus tieši no sākuma ekrāna vai bloķēšanas ekrāna, izmantojot mūsu jaudīgo ciparatūras logrīku, pat pilnībā nepalaižot lietotni.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box green">💱</div>
+                    <h3>Vairāku valūtu un reāllaika kursi</h3>
+                    <p>Piesakieties vietējā valūtā, ceļojot uz ārzemēm. Mēs atbalstām vairāk nekā 50 pasaules valūtas un automātiski aprēķinām jūsu bāzes valūtu, izmantojot reālos maiņas kursus no pirkuma brīža.</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box orange">🎨</div>
+                    <h3>Pielāgotas mapes un viedie filtri</h3>
+                    <p>Personalizējiet savas kategorijas ar 16 iepriekš iestatītām krāsām. Ērti analizējiet savu tēriņu uzvedību, filtrējot, izmantojot maksājuma veidus (skaidra nauda/karte) vai attiecinājumu (es/partneris).</p>
+                </div>
+
+                <div class="card">
+                    <div class="icon-box red">🔒</div>
+                    <h3>Droši un vienkārši konti</h3>
+                    <p>Reģistrējieties ar vienu pieskārienu, izmantojot Apple vai Google pierakstīšanos — nav jāievada e-pasta adrese/parole. Varat arī droši izpētīt visas funkcijas, izmantojot mūsu anonīmo ceļojumu režīmu.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="/terms-en.html">Pakalpojuma noteikumi</a>
+                <a href="/privacy-en.html">Privātuma politika</a>
+            </div>
+            <p style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">Studio Taeo</p>
+            <p style="font-size: 14px; opacity: 0.5;">D-U-N-S® Number: 696528698</p>
+            <p style="font-size: 14px; opacity: 0.5; margin-top: 24px;">© 2026 Studio Taeo. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach((card, i) => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(40px)';
+            card.style.transition = `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${i * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.lang-dropdown');
+            const btn = e.target.closest('.lang-switch-btn');
+            if (btn) {
+                e.preventDefault();
+                dropdown.classList.toggle('show');
+            } else if (dropdown && !e.target.closest('.lang-dropdown')) {
+                dropdown.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

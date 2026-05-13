@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeSpend – Villámgyors megosztott költségkövető</title>
-    <meta name="description" content="Valós idejű megosztott költségkövető párok és családok számára. Tapasztalja meg a napi nyomon követéshez optimalizált villámgyors bevitelt.">
+    <meta name="description" content="Valós idejű megosztott költségkövető párok és családok számára. Tapasztalja meg a napi követéshez optimalizált villámgyors bevitelt.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -259,19 +259,23 @@
 
         .hero-image-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 320px;
             margin: 0 auto 100px;
             position: relative;
-            border-radius: 32px;
+            border-radius: 40px;
             background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.05);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
             overflow: hidden;
-            height: 300px;
+            border: 8px solid #222;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         footer {
@@ -409,6 +413,8 @@
     <li role="option"><a href="/id/">Bahasa Indonesia</a></li>
     <li role="option"><a href="/it/">Italiano</a></li>
     <li role="option"><a href="/ja/">日本語</a></li>
+    <li role="option"><a href="/lt/">Lietuvių</a></li>
+    <li role="option"><a href="/lv/">Latviešu</a></li>
     <li role="option"><a href="/ms/">Bahasa Melayu</a></li>
     <li role="option"><a href="/nl-NL/">Nederlands</a></li>
     <li role="option"><a href="/no/">Norsk</a></li>
@@ -435,17 +441,16 @@
             <p>Kezdje el naplózni a kiadásait, amint megnyitja az alkalmazást.<br>Villámgyors bevitelünkkel és intuitív kütyüinkkel a kiadások kezelése partnerével vagy családjával még soha nem volt ilyen egyszerű.</p>
             
             <div class="badges">
-                <div class="badge"> App Store Coming Soon</div>
-                <div class="badge">▶ Google Play Coming Soon</div>
+                <a href="https://apps.apple.com/app/id6760176874" class="badge" target="_blank" style="text-decoration: none; color: inherit; cursor: pointer;">
+                     Töltse le az App Store-ból
+                </a>
+                <div class="badge">▶ Google Play hamarosan</div>
             </div>
         </section>
 
-        <!-- Placeholder for app screenshot -->
+        <!-- App screenshot -->
         <div class="hero-image-container">
-            <div style="text-align: center; opacity: 0.5;">
-                <div style="font-size: 48px; margin-bottom: 12px;">💸</div>
-                <p>App Screenshot Rendering Area</p>
-            </div>
+            <img src="screenshot.png" alt="WeSpend App Screenshot" loading="lazy">
         </div>
 
         <section class="features">
@@ -476,7 +481,7 @@
                 <div class="card">
                     <div class="icon-box green">💱</div>
                     <h3>Több valuta és élő árfolyamok</h3>
-                    <p>Külföldi utazás közben jelentkezzen be a helyi pénznemben. Több mint 50 globális valutát támogatunk, és a vásárlás pillanatától számítva automatikusan kiszámítjuk az alapvalutát a vásárlás pillanatától érvényes, élő átváltási árfolyamok alapján.</p>
+                    <p>Külföldi utazás közben jelentkezzen be a helyi pénznemben. Több mint 50 globális valutát támogatunk, és a vásárlás pillanatától számítva automatikusan kiszámítjuk az alapvalutát a vásárlás pillanatától számított élő árfolyamok alapján.</p>
                 </div>
 
                 <div class="card">
