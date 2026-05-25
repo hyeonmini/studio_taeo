@@ -41,6 +41,9 @@ body{
   line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
   word-break:keep-all;
 }
+/* CJK / Thai have no spaces — keep-all would overflow; let them wrap per character */
+html[lang="ja"] body,html[lang="zh-Hans"] body,html[lang="zh-Hant"] body,html[lang="th"] body{word-break:normal;line-break:auto}
+.hero h1,.act h2,.c-copy h3,.summit h2{text-wrap:balance}
 ::selection{background:var(--gold);color:#fff}
 a{color:inherit}
 img{max-width:100%;display:block}
@@ -120,7 +123,7 @@ nav.scrolled{border-bottom:1px solid var(--line)}
 /* ---------- HERO ---------- */
 .hero{padding:64px 0 40px;text-align:center;position:relative}
 .hero h1{font-size:clamp(40px,8.4vw,86px);font-weight:800;line-height:1.04;letter-spacing:-.035em;margin:22px auto 0;max-width:14ch}
-.hero h1 .g{color:transparent;background:linear-gradient(120deg,var(--gold-deep),var(--gold) 50%,var(--shopping));-webkit-background-clip:text;background-clip:text;position:relative;white-space:nowrap}
+.hero h1 .g{color:transparent;background:linear-gradient(120deg,var(--gold-deep),var(--gold) 50%,var(--shopping));-webkit-background-clip:text;background-clip:text;position:relative}
 .hero h1 .g::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.16em;background:rgba(217,169,58,.28);border-radius:99px;z-index:-1}
 .hero .sub{font-size:clamp(17px,2.3vw,21px);color:var(--ink-2);max-width:30rem;margin:24px auto 0;font-weight:500}
 .cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:34px}
@@ -296,7 +299,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <li role="option"><a href="/zh-Hant/">繁體中文</a></li>
 </ul>
       </div>
-      <a class="appstore sm" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="assets/appstore-ko-black.svg" alt="App Store에서 다운로드"></a>
+      <a class="appstore sm" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store에서 다운로드"></a>
     </div>
   </div>
 </nav>
@@ -309,7 +312,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <h1 class="reveal" data-d="1">부자의 첫걸음은<br><span class="g">스크린샷 한 장.</span></h1>
     <p class="sub reveal" data-d="2">사진이나 스크린샷만 고르면 지출이 저절로 가계부로 정리돼요.<br>계좌·카드 연동도, 타이핑도 없이.</p>
     <div class="cta-row reveal" data-d="3">
-      <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="assets/appstore-ko-black.svg" alt="App Store에서 다운로드"></a>
+      <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store에서 다운로드"></a>
       <span class="btn-ghost">Google Play <span class="dot">곧</span></span>
     </div>
 
@@ -329,10 +332,10 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     </div>
 
     <div class="trust reveal" data-d="3">
-      <span class="chip">⌨ 타이핑 <b>0</b></span>
-      <span class="chip">⏱ 약 <b>10초</b></span>
-      <span class="chip">🖼 한 번에 <b>5장</b></span>
-      <span class="chip">🌐 <b>38개</b> 언어</span>
+      <span class="chip">⌨ 타이핑 0</span>
+      <span class="chip">⏱ 약 10초</span>
+      <span class="chip">🖼 한 번에 5장</span>
+      <span class="chip">🌐 38개 언어</span>
     </div>
     <div style="margin-top:26px"><span class="scrollhint">천천히 둘러보기 <span class="ar">↓</span></span></div>
   </section>
@@ -427,7 +430,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
       </div>
 
       <div class="cta-row reveal" data-d="3">
-        <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="assets/appstore-ko-white.svg" alt="App Store에서 다운로드"></a>
+        <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-white.svg" alt="App Store에서 다운로드"></a>
       </div>
     </div>
   </section>
