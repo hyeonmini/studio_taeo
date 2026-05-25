@@ -13,6 +13,7 @@ Usage:
 import os
 import sys
 import json
+import glob
 import time
 import urllib.request
 
@@ -72,12 +73,36 @@ def translate_locale(g_code, cache):
     return out
 
 
-def strings_for(loc, cache):
+def load_overrides():
+    """Merge scripts/tc_*.json (hand/agent transcreations) keyed by fastlane locale."""
+    ov = {}
+    for p in sorted(glob.glob(os.path.join(HERE, "tc_*.json"))):
+        try:
+            for fl, vals in json.load(open(p, encoding="utf-8")).items():
+                ov[fl] = vals
+        except Exception as e:
+            print(f"  ! override {os.path.basename(p)} skipped: {e}")
+    return ov
+
+
+def strings_for(loc, cache, overrides):
     if loc["fl"] == "ko":
         return STRINGS["ko"]
     if loc["fl"] == "en-US":
         return STRINGS["en"]
-    return translate_locale(loc["g"], cache)
+    base = dict(translate_locale(loc["g"], cache))   # cached MT fallback
+    ov = overrides.get(loc["fl"])
+    if ov:
+        base.update({k: v for k, v in ov.items() if k in KEYS and isinstance(v, str) and v.strip()})
+        # SEO meta wasn't in the transcreation brief — synthesize it from the
+        # transcreated hero copy so <title>/description stay on-brand per locale.
+        if "TITLE" not in ov:
+            base["TITLE"] = f"WeSpend — {base['H1_LEAD']} {base['H1_GOLD']}".rstrip(" .。") + ""
+        if "OG_DESC" not in ov:
+            base["OG_DESC"] = f"{base['SUB1']} {base['SUB2']}"
+        if "DESC" not in ov:
+            base["DESC"] = f"{base['SUB1']} {base['SUB2']}"
+    return base
 
 
 # ----------------------------- html -----------------------------
@@ -162,9 +187,12 @@ def main():
 
     tpl = open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
     cache = load_cache()
+    overrides = load_overrides()
+    if overrides:
+        print(f"  overrides loaded for {len(overrides)} locales")
 
     for loc in locales:
-        s = strings_for(loc, cache)
+        s = strings_for(loc, cache, overrides)
         html = fill(tpl, loc, s)
         out = ROOT if loc["dir"] == "" else os.path.join(ROOT, loc["dir"])
         os.makedirs(out, exist_ok=True)
