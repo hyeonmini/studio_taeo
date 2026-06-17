@@ -2,502 +2,162 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WeSpend — 부자의 첫걸음은 스크린샷 한 장</title>
-<meta name="description" content="사진·스크린샷 한 장이면 가계부 끝. 계좌 연동도 타이핑도 없이, 지출이 저절로 정리됩니다. 부자가 되는 가장 쉬운 첫 걸음, WeSpend.">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="WeSpend — 부자의 첫걸음은 스크린샷 한 장">
-<meta property="og:description" content="사진·스크린샷 한 장이면 가계부 끝. 계좌 연동도, 타이핑도 없이.">
-<meta property="og:image" content="https://wespend.studiotaeo.com/assets/og.png">
-<meta property="og:url" content="https://wespend.studiotaeo.com/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FBF7EE">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WeSpend</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" href="assets/icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:#FBF7EE; --paper-2:#F3ECDA; --paper-3:#ECE3CC;
-  --ink:#1C1814; --ink-2:#4A4136; --ink-3:#8A8071;
-  --gold:#D9A93A; --gold-deep:#B07E1F; --gold-soft:#F0D58A;
-  --food:#FF6B5C; --transport:#4A90D9; --shopping:#E6A02E; --living:#3FB477; --medical:#E85C9A;
-  --good:#26B463;
-  --line:rgba(28,24,20,.12);
-  --shadow: 0 30px 60px -20px rgba(60,45,15,.35);
-  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  --sans:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:var(--sans); background:var(--paper); color:var(--ink);
-  line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
-  word-break:keep-all;
-}
-/* CJK / Thai have no spaces — keep-all would overflow; let them wrap per character */
-html[lang="ja"] body,html[lang="zh-Hans"] body,html[lang="zh-Hant"] body,html[lang="th"] body{word-break:normal;line-break:auto}
-.hero h1,.act h2,.c-copy h3,.summit h2{text-wrap:balance}
-::selection{background:var(--gold);color:#fff}
-a{color:inherit}
-img{max-width:100%;display:block}
+  :root{
+    --bg:#f3efe8;          /* warm cream */
+    --ink:#1c1a17;         /* near-black, warm */
+    --muted:#6b6358;       /* warm grey */
+    --line:#e2dace;
+    --accent:#c8924e;      /* warm caramel (ties to WeSpend amber) */
+    --glow:#ffd9a8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Pretendard',sans-serif;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    min-height:100svh; display:flex; flex-direction:column;
+    position:relative; overflow-x:hidden;
+  }
+  /* soft warm glow */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(60% 45% at 50% -5%, var(--glow) 0%, transparent 60%);
+    opacity:.55;
+  }
+  header,main,footer{position:relative; z-index:1}
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px clamp(20px,5vw,48px);
+  }
+  .word{font-family:'Instrument Serif',serif; font-size:24px; letter-spacing:.2px}
+  .word b{font-weight:400}
+  header a{color:var(--muted); text-decoration:none; font-size:14px; font-weight:500}
+  header a:hover{color:var(--ink)}
 
-/* ---------- textured backdrop ---------- */
-.backdrop{position:fixed;inset:0;z-index:-2;background:
-  radial-gradient(120% 80% at 50% -10%, #FFFDF7 0%, var(--paper) 45%, var(--paper-2) 100%);}
-.contours{position:fixed;inset:0;z-index:-1;opacity:.5;pointer-events:none;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1600' viewBox='0 0 1200 1600'><g fill='none' stroke='%23D9A93A' stroke-opacity='0.10' stroke-width='1.4'><path d='M-50 1500 C300 1400 500 1480 750 1360 C950 1260 1100 1320 1300 1220'/><path d='M-50 1380 C300 1290 520 1360 760 1240 C980 1130 1120 1200 1300 1090'/><path d='M-50 1250 C320 1170 540 1240 780 1110 C1000 1000 1140 1070 1300 960'/><path d='M-50 1110 C340 1040 560 1110 800 980 C1010 870 1160 940 1300 830'/><path d='M-50 960 C360 900 580 970 820 840 C1030 740 1180 800 1300 700'/><path d='M-50 800 C380 750 600 820 840 700 C1050 600 1190 660 1300 560'/></g></svg>");
-  background-size:min(100vw,1200px) auto; background-position:bottom center; background-repeat:no-repeat;}
-.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+  main{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:6vh clamp(20px,6vw,40px) 8vh; gap:30px;
+  }
+  .icon{
+    width:84px; height:84px; border-radius:21px; box-shadow:0 14px 40px rgba(120,80,20,.20);
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  h1{
+    font-family:'Instrument Serif',serif; font-weight:400;
+    font-size:clamp(2.7rem,7.4vw,5.4rem); line-height:1.04; letter-spacing:-.5px;
+    max-width:16ch; animation:rise 1s cubic-bezier(.2,.7,.2,1) .06s both;
+  }
+  h1 em{font-style:italic; color:var(--accent)}
+  .sub{
+    font-size:clamp(1.02rem,2.4vw,1.22rem); line-height:1.6; color:var(--muted);
+    max-width:30ch; font-weight:400; animation:rise 1s cubic-bezier(.2,.7,.2,1) .14s both;
+  }
+  .dl{display:flex; flex-direction:column; align-items:center; gap:12px;
+      animation:rise 1s cubic-bezier(.2,.7,.2,1) .22s both}
+  .badge{display:inline-block; transition:transform .25s, filter .25s}
+  .badge:hover{transform:translateY(-2px); filter:brightness(1.04)}
+  .badge img{height:52px; display:block}
+  .hint{font-size:13.5px; color:var(--muted); letter-spacing:.1px; min-height:18px}
+  .qr{display:none; flex-direction:column; align-items:center; gap:10px; margin-top:8px;
+      background:#fffdf8; border:1px solid var(--line); border-radius:18px; padding:18px 18px 14px;
+      box-shadow:0 10px 30px rgba(120,80,20,.10)}
+  .qr img{width:148px; height:148px; display:block}
+  .qrcap{font-size:13px; color:var(--muted)}
 
-/* ---------- layout ---------- */
-.wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative}
-.mono{font-family:var(--mono);letter-spacing:.04em}
+  footer{
+    text-align:center; padding:26px 20px 34px; color:var(--muted);
+    font-size:13px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  }
+  footer a{color:var(--muted); text-decoration:none}
+  footer a:hover{color:var(--ink); text-decoration:underline}
+  .dot{opacity:.4}
 
-/* ---------- nav ---------- */
-nav{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(10px);
-  background:rgba(251,247,238,.72);border-bottom:1px solid transparent;transition:border-color .3s}
-nav.scrolled{border-bottom:1px solid var(--line)}
-.nav-in{max-width:1140px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:-.02em}
-.brand .mark{width:29px;height:29px;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(176,126,31,.28)}
-.brand .mark img{width:100%;height:100%;object-fit:cover;display:block}
-.nav-actions{display:flex;align-items:center;gap:10px}
-
-/* language switcher */
-.lang{position:relative}
-.lang-btn{font-family:var(--mono);font-size:12px;font-weight:700;padding:8px 12px;border-radius:99px;
-  background:var(--paper-2);border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--ink-2)}
-.lang-btn:hover{background:var(--paper-3)}
-.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1px solid var(--line);
-  border-radius:14px;min-width:170px;max-height:340px;overflow-y:auto;list-style:none;display:none;z-index:100;
-  box-shadow:0 20px 50px -12px rgba(60,45,15,.35);padding:6px}
-.lang-dropdown.show{display:block}
-.lang-dropdown li a{display:block;padding:9px 12px;border-radius:9px;text-decoration:none;font-size:14px;font-weight:500;color:var(--ink-2)}
-.lang-dropdown li a:hover{background:var(--paper-2);color:var(--ink)}
-
-/* ---------- buttons ---------- */
-.appstore{display:inline-block;line-height:0;border-radius:9px;transition:transform .25s ease,filter .25s ease}
-.appstore:hover{transform:translateY(-3px);filter:drop-shadow(0 12px 22px rgba(20,16,10,.25))}
-.appstore img{height:54px;width:auto;display:block}
-.appstore.sm img{height:34px}
-.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 22px;border-radius:99px;font-weight:700;
-  border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px}
-.btn-ghost .dot{font-size:11px;font-family:var(--mono);background:var(--paper-3);padding:3px 7px;border-radius:99px}
-
-/* ---------- HUD rail (desktop) ---------- */
-.rail{position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:50;width:120px;display:none}
-@media(min-width:1400px){.rail{display:block}}
-.rail-hd{font-family:var(--mono);font-size:10px;font-weight:800;color:var(--ink-3);letter-spacing:.14em;margin-bottom:14px}
-.rail-hd b{display:block;font-size:22px;color:var(--gold-deep);letter-spacing:-.02em}
-.rail-track{position:relative;margin-left:6px;padding-left:22px}
-.rail-track::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:3px;border-radius:3px;background:var(--paper-3)}
-.rail-fill{position:absolute;left:0;top:4px;width:3px;border-radius:3px;height:0;
-  background:linear-gradient(var(--gold-soft),var(--gold),var(--gold-deep));box-shadow:0 0 12px var(--gold)}
-.rail-node{position:relative;display:flex;align-items:center;gap:9px;height:46px;cursor:pointer;text-decoration:none}
-.rail-node .pt{position:absolute;left:-22px;width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid var(--paper-3);transition:.3s;transform:translateX(-5px)}
-.rail-node .lb{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink-3);letter-spacing:.08em;transition:.3s}
-.rail-node.on .pt{border-color:var(--gold);background:var(--gold);box-shadow:0 0 0 4px rgba(217,169,58,.25),0 0 14px var(--gold)}
-.rail-node.on .lb{color:var(--ink)}
-.rail-node.done .pt{border-color:var(--gold);background:var(--gold)}
-
-/* ---------- mobile progress ---------- */
-.mprog{position:fixed;top:0;left:0;height:3px;width:0;z-index:70;background:linear-gradient(90deg,var(--gold-soft),var(--gold),var(--gold-deep));box-shadow:0 0 10px var(--gold)}
-
-/* ---------- generic ---------- */
-.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;font-weight:800;
-  letter-spacing:.1em;color:var(--gold-deep);background:rgba(217,169,58,.13);border:1px solid rgba(217,169,58,.3);
-  padding:7px 14px;border-radius:99px;text-transform:uppercase}
-.eyebrow .n{background:var(--gold);color:#fff;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10px}
-.reveal{opacity:0;transform:translateY(46px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
-.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}.reveal[data-d="3"]{transition-delay:.24s}
-
-/* ---------- HERO ---------- */
-.hero{padding:64px 0 40px;text-align:center;position:relative}
-.hero h1{font-size:clamp(40px,8.4vw,86px);font-weight:800;line-height:1.04;letter-spacing:-.035em;margin:22px auto 0;max-width:14ch}
-.hero h1 .g{color:transparent;background:linear-gradient(120deg,var(--gold-deep),var(--gold) 50%,var(--shopping));-webkit-background-clip:text;background-clip:text;position:relative}
-.hero h1 .g::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.16em;background:rgba(217,169,58,.28);border-radius:99px;z-index:-1}
-.hero .sub{font-size:clamp(17px,2.3vw,21px);color:var(--ink-2);max-width:30rem;margin:24px auto 0;font-weight:500}
-.cta-row{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:34px}
-.scrollhint{margin-top:30px;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.1em;display:inline-flex;align-items:center;gap:8px}
-.scrollhint .ar{display:inline-block;animation:bob 1.6s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-
-/* hero demo : snap -> sorted */
-.demo{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,40px);margin:50px auto 0;flex-wrap:nowrap}
-.phone{position:relative;width:clamp(168px,40vw,236px);border-radius:34px;background:#0d0b09;padding:8px;
-  box-shadow:var(--shadow);flex:none}
-.phone::before{content:"";position:absolute;top:13px;left:50%;transform:translateX(-50%);width:30%;height:18px;background:#0d0b09;border-radius:0 0 12px 12px;z-index:3}
-.phone img{border-radius:27px;width:100%;height:auto;display:block}
-.phone .scanbeam{position:absolute;left:8px;right:8px;top:8px;height:42px;border-radius:27px 27px 0 0;z-index:2;
-  background:linear-gradient(180deg,rgba(217,169,58,.0),rgba(217,169,58,.55) 70%,rgba(255,255,255,.85));
-  mix-blend-mode:screen;animation:scan 3.4s cubic-bezier(.6,0,.4,1) infinite;opacity:0}
-@keyframes scan{0%{top:8px;opacity:0}10%{opacity:1}48%{top:78%;opacity:1}60%{opacity:0}100%{opacity:0}}
-.demo-arrow{flex:none;display:grid;place-items:center;width:clamp(38px,7vw,64px)}
-.demo-arrow svg{width:100%;color:var(--gold);filter:drop-shadow(0 4px 10px rgba(217,169,58,.5))}
-.demo-arrow .lbl{font-family:var(--mono);font-size:9px;font-weight:800;color:var(--gold-deep);letter-spacing:.1em;margin-top:4px;text-align:center}
-.phone .stamp{position:absolute;z-index:4;font-family:var(--mono);font-weight:800;font-size:11px;color:#fff;
-  background:var(--good);padding:5px 9px;border-radius:99px;box-shadow:0 8px 16px -4px rgba(38,180,99,.6);
-  top:14%;right:-12px;transform:rotate(6deg);animation:pop 3.4s ease-in-out infinite}
-@keyframes pop{0%,55%{opacity:0;transform:scale(.5) rotate(6deg)}66%{opacity:1;transform:scale(1.12) rotate(6deg)}74%,100%{opacity:1;transform:scale(1) rotate(6deg)}}
-
-/* trust strip */
-.trust{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:42px auto 0}
-.chip{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-2);background:#fff;border:1px solid var(--line);
-  padding:9px 15px;border-radius:99px;display:inline-flex;align-items:center;gap:7px;box-shadow:0 6px 16px -10px rgba(60,45,15,.4)}
-.chip b{color:var(--gold-deep)}
-
-/* ---------- ACT divider ---------- */
-.act{padding:96px 0 26px;text-align:center}
-.act .k{font-family:var(--mono);font-size:13px;font-weight:800;letter-spacing:.18em;color:var(--gold-deep)}
-.act h2{font-size:clamp(30px,5.2vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.12;margin-top:14px;max-width:18ch;margin-inline:auto}
-.act p{color:var(--ink-2);font-size:clamp(16px,2vw,19px);max-width:34rem;margin:16px auto 0;font-weight:500}
-
-/* big two-line joke (act 1) */
-.steps{max-width:560px;margin:34px auto 0;text-align:left;display:grid;gap:14px}
-.step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 10px 26px -16px rgba(60,45,15,.4)}
-.step .num{font-family:var(--mono);font-weight:800;font-size:14px;color:#fff;background:var(--ink);min-width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:none}
-.step.win .num{background:var(--gold)}
-.step .tx b{font-size:18px;font-weight:800}.step .tx span{display:block;color:var(--ink-3);font-size:14px;font-weight:500;margin-top:2px}
-
-/* ---------- checkpoints ---------- */
-.checks{display:grid;gap:74px;padding:30px 0 10px}
-.check{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center}
-.check:nth-child(even) .c-media{order:2}
-@media(max-width:820px){.check{grid-template-columns:1fr;gap:30px}.check:nth-child(even) .c-media{order:0}}
-@media(max-width:560px){
-  .demo{flex-direction:column;gap:4px;margin-top:40px}
-  .demo-arrow{width:auto}
-  .demo-arrow svg{width:40px;transform:rotate(90deg)}
-  .demo-arrow .lbl{display:none}
-  .phone{width:min(66vw,250px)}
-  .hero{padding-top:40px}
-}
-.c-copy .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;font-weight:800;letter-spacing:.08em;padding:6px 12px;border-radius:99px;color:#fff}
-.c-copy h3{font-size:clamp(25px,3.6vw,38px);font-weight:800;letter-spacing:-.025em;line-height:1.16;margin:16px 0 0}
-.c-copy p{color:var(--ink-2);font-size:clamp(15px,1.8vw,18px);margin-top:14px;font-weight:500}
-.c-copy .feats{list-style:none;margin-top:18px;display:grid;gap:9px}
-.c-copy .feats li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink-2);font-weight:500}
-.c-copy .feats svg{width:20px;height:20px;flex:none;color:var(--good);margin-top:1px}
-.c-media{display:flex;justify-content:center}
-.c-media .phone{width:clamp(220px,46vw,300px)}
-.c-media .frame{position:relative}
-.glow{position:absolute;inset:-12% -8%;z-index:-1;border-radius:50%;filter:blur(46px);opacity:.5}
-
-/* ---------- SUMMIT ---------- */
-.summit{margin-top:96px;position:relative;overflow:hidden;
-  background:linear-gradient(160deg,#1c1814,#2a2014 60%,#1c1814);color:#fff;border-radius:40px 40px 0 0;padding:90px 24px 70px;text-align:center}
-.summit::before{content:"";position:absolute;inset:0;opacity:.5;background:
-  radial-gradient(60% 50% at 50% 0%,rgba(217,169,58,.4),transparent 70%)}
-.summit .in{position:relative;max-width:760px;margin:0 auto}
-.summit .k{font-family:var(--mono);font-size:13px;font-weight:800;letter-spacing:.2em;color:var(--gold-soft)}
-.summit h2{font-size:clamp(34px,6vw,64px);font-weight:800;letter-spacing:-.035em;line-height:1.06;margin-top:18px}
-.summit h2 .g{color:transparent;background:linear-gradient(120deg,var(--gold-soft),var(--gold) 55%,#fff);-webkit-background-clip:text;background-clip:text}
-.summit p{color:rgba(255,255,255,.72);font-size:clamp(16px,2.2vw,20px);max-width:30rem;margin:20px auto 0;font-weight:500}
-.gauge{max-width:420px;margin:34px auto 0;font-family:var(--mono)}
-.gauge .row{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--gold-soft);letter-spacing:.1em;margin-bottom:8px}
-.gauge .bar{height:14px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden;border:1px solid rgba(217,169,58,.3)}
-.gauge .barfill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-soft));box-shadow:0 0 16px var(--gold);transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
-.gauge.on .barfill{width:100%}
-.receipt{margin:36px auto 0;max-width:340px;background:#fbf7ee;color:var(--ink);border-radius:6px;padding:20px 22px;text-align:left;
-  font-family:var(--mono);font-size:13px;box-shadow:0 24px 50px -16px rgba(0,0,0,.6);
-  -webkit-mask:radial-gradient(7px at 7px 50%,transparent 98%,#000) left/100% 16px repeat-y,radial-gradient(7px at calc(100% - 7px) 50%,transparent 98%,#000) right/100% 16px repeat-y;mask:radial-gradient(7px at 7px 50%,transparent 98%,#000) left,radial-gradient(7px at calc(100% - 7px) 50%,transparent 98%,#000) right}
-.receipt .h{text-align:center;font-weight:800;letter-spacing:.18em;border-bottom:1.5px dashed var(--line);padding-bottom:10px;margin-bottom:10px}
-.receipt .li{display:flex;justify-content:space-between;padding:3px 0;color:var(--ink-2)}
-.receipt .tot{display:flex;justify-content:space-between;border-top:1.5px dashed var(--line);margin-top:10px;padding-top:10px;font-weight:800;font-size:15px;color:var(--ink)}
-.receipt .tot .free{color:var(--good)}
-.receipt .bc{margin-top:12px;height:34px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 9px)}
-.receipt .ty{text-align:center;font-size:10px;color:var(--ink-3);margin-top:8px;letter-spacing:.05em}
-.summit .cta-row{margin-top:38px}
-
-/* ---------- footer ---------- */
-footer{background:#15110d;color:rgba(255,255,255,.6);text-align:center;padding:46px 24px 56px}
-.footer-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.footer-links a{color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;font-weight:500}
-.footer-links a:hover{color:#fff}
-footer .co{color:#fff;font-weight:700;font-size:15px;margin-bottom:6px}
-footer .sm{font-size:12px;opacity:.5}
-footer .mono{margin-top:18px;font-size:11px;opacity:.4}
-
-@media (prefers-reduced-motion: reduce){
-  *{animation:none!important;scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none;transition:none}
-}
+  @keyframes rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
-<div class="backdrop"></div><div class="contours"></div><div class="grain"></div>
+  <header>
+    <span class="word"><b>WeSpend</b></span>
+    <a id="navStore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener">App Store ↗</a>
+  </header>
 
-<div class="mprog" id="mprog"></div>
-
-<!-- HUD rail -->
-<aside class="rail" aria-hidden="true">
-  <div class="rail-hd">둘러보기</div>
-  <div class="rail-track" id="railtrack">
-    <div class="rail-fill" id="railfill"></div>
-    <a class="rail-node" href="#snap"><span class="pt"></span><span class="lb">SNAP</span></a>
-    <a class="rail-node" href="#budget"><span class="pt"></span><span class="lb">BUDGET</span></a>
-    <a class="rail-node" href="#share"><span class="pt"></span><span class="lb">SHARE</span></a>
-    <a class="rail-node" href="#travel"><span class="pt"></span><span class="lb">TRAVEL</span></a>
-    <a class="rail-node" href="#organize"><span class="pt"></span><span class="lb">SORT</span></a>
-    <a class="rail-node" href="#summit"><span class="pt"></span><span class="lb">START</span></a>
-  </div>
-</aside>
-
-<nav id="nav">
-  <div class="nav-in">
-    <div class="brand"><span class="mark"><img src="assets/icon.png" alt="WeSpend" width="29" height="29"></span>WeSpend</div>
-    <div class="nav-actions">
-      <div class="lang">
-        <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false">🌐 한국어 ▾</button>
-        <ul class="lang-dropdown" role="listbox">
-    <li role="option"><a href="/">한국어</a></li>
-    <li role="option"><a href="/en/">English</a></li>
-    <li role="option"><a href="/ar-SA/">العربية</a></li>
-    <li role="option"><a href="/ca/">Català</a></li>
-    <li role="option"><a href="/cs/">Čeština</a></li>
-    <li role="option"><a href="/da/">Dansk</a></li>
-    <li role="option"><a href="/de-DE/">Deutsch</a></li>
-    <li role="option"><a href="/el/">Ελληνικά</a></li>
-    <li role="option"><a href="/es-ES/">Español (ES)</a></li>
-    <li role="option"><a href="/es-MX/">Español (MX)</a></li>
-    <li role="option"><a href="/fi/">Suomi</a></li>
-    <li role="option"><a href="/fr-CA/">Français (CA)</a></li>
-    <li role="option"><a href="/fr-FR/">Français (FR)</a></li>
-    <li role="option"><a href="/he/">עברית</a></li>
-    <li role="option"><a href="/hi/">हिन्दी</a></li>
-    <li role="option"><a href="/hr/">Hrvatski</a></li>
-    <li role="option"><a href="/hu/">Magyar</a></li>
-    <li role="option"><a href="/id/">Bahasa Indonesia</a></li>
-    <li role="option"><a href="/it/">Italiano</a></li>
-    <li role="option"><a href="/ja/">日本語</a></li>
-    <li role="option"><a href="/lt/">Lietuvių</a></li>
-    <li role="option"><a href="/lv/">Latviešu</a></li>
-    <li role="option"><a href="/ms/">Bahasa Melayu</a></li>
-    <li role="option"><a href="/nl-NL/">Nederlands</a></li>
-    <li role="option"><a href="/no/">Norsk</a></li>
-    <li role="option"><a href="/pl/">Polski</a></li>
-    <li role="option"><a href="/pt-BR/">Português (BR)</a></li>
-    <li role="option"><a href="/pt-PT/">Português (PT)</a></li>
-    <li role="option"><a href="/ro/">Română</a></li>
-    <li role="option"><a href="/ru/">Русский</a></li>
-    <li role="option"><a href="/sk/">Slovenčina</a></li>
-    <li role="option"><a href="/sv/">Svenska</a></li>
-    <li role="option"><a href="/th/">ไทย</a></li>
-    <li role="option"><a href="/tr/">Türkçe</a></li>
-    <li role="option"><a href="/uk/">Українська</a></li>
-    <li role="option"><a href="/vi/">Tiếng Việt</a></li>
-    <li role="option"><a href="/zh-Hans/">简体中文</a></li>
-    <li role="option"><a href="/zh-Hant/">繁體中文</a></li>
-</ul>
-      </div>
-      <a class="appstore sm" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store에서 다운로드"></a>
-    </div>
-  </div>
-</nav>
-
-<main class="wrap">
-
-  <!-- HERO -->
-  <section class="hero" id="snap" data-stage="0" data-level="SNAP">
-    <span class="eyebrow reveal">✦ 사진·스크린샷으로 쓰는 가계부</span>
-    <h1 class="reveal" data-d="1">부자의 첫걸음은<br><span class="g">스크린샷 한 장.</span></h1>
-    <p class="sub reveal" data-d="2">사진이나 스크린샷만 고르면 지출이 저절로 가계부로 정리돼요.<br>계좌·카드 연동도, 타이핑도 없이.</p>
-    <div class="cta-row reveal" data-d="3">
-      <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store에서 다운로드"></a>
-      <span class="btn-ghost">Google Play <span class="dot">곧</span></span>
-    </div>
-
-    <div class="demo reveal" data-d="2">
-      <div class="phone">
-        <div class="scanbeam"></div>
-        <img src="ss-scan.webp" alt="스크린샷으로 지출 등록 화면" width="680" height="1476" loading="eager" fetchpriority="high">
-      </div>
-      <div class="demo-arrow" aria-hidden="true">
-        <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20h46"/><path d="M40 7l16 13-16 13"/></svg>
-        <div class="lbl">AUTO</div>
-      </div>
-      <div class="phone">
-        <img src="ss-review.webp" alt="자동으로 정리된 거래 검토 화면" width="680" height="1476" loading="eager">
-        <span class="stamp">✓ 7건 정리</span>
+  <main>
+    <img class="icon" src="assets/icon-512.png" alt="WeSpend">
+    <h1 id="h1">부자의 첫걸음은<br><em>스크린샷 한 장.</em></h1>
+    <p class="sub" id="sub">기록이 귀찮아 못 모았던 거예요. 사진 한 장이면 정리는 끝 — 이제 혼자 보지 않아도 돼요.</p>
+    <div class="dl">
+      <a class="badge" id="badge" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener">
+        <img id="badgeImg" src="assets/appstore-ko-black.svg" alt="App Store에서 다운로드">
+      </a>
+      <span class="hint" id="hint"></span>
+      <div class="qr" id="qr">
+        <img src="assets/qr-appstore.svg" alt="App Store QR" width="148" height="148">
+        <span class="qrcap" id="qrcap"></span>
       </div>
     </div>
+  </main>
 
-    <div class="trust reveal" data-d="3">
-      <span class="chip">⌨ 타이핑 0</span>
-      <span class="chip">⏱ 약 10초</span>
-      <span class="chip">🖼 한 번에 5장</span>
-      <span class="chip">🌐 38개 언어</span>
-    </div>
-    <div style="margin-top:26px"><span class="scrollhint">천천히 둘러보기 <span class="ar">↓</span></span></div>
-  </section>
-
-  <!-- ACT I -->
-  <section class="act">
-    <div class="k reveal">ACT I — 입력이 간단하다</div>
-    <h2 class="reveal" data-d="1">기록이 귀찮아서<br>못 모았던 거예요.</h2>
-    <p class="reveal" data-d="2">그래서 가장 귀찮은 걸 없앴어요. 적지 말고, 그냥 고르세요.</p>
-    <div class="steps">
-      <div class="step reveal"><span class="num">1</span><span class="tx"><b>스크린샷을 고른다.</b><span>은행 앱, 결제 알림, 영수증 사진 — 뭐든.</span></span></div>
-      <div class="step win reveal" data-d="1"><span class="num">2</span><span class="tx"><b>……끝. 2단계는 없어요.</b><span>거래 내역을 읽어 한 번에 가계부로. 카드·계좌번호는 분석 전 기기에서 자동으로 가려져요. 🔒</span></span></div>
-    </div>
-  </section>
-
-  <!-- CHECKPOINTS -->
-  <section class="checks">
-
-    <article class="check" id="budget" data-stage="1" data-level="BUDGET">
-      <div class="c-media reveal"><div class="frame"><div class="glow" style="background:radial-gradient(circle,var(--shopping),transparent 70%)"></div>
-        <div class="phone"><img src="ss-entry.webp" alt="예산과 계산기 키패드 입력 화면" width="680" height="1476" loading="lazy"></div></div></div>
-      <div class="c-copy reveal" data-d="1">
-        <span class="tag" style="background:var(--shopping)">BUDGET</span>
-        <h3>예산을 정하면,<br>돈이 보이기 시작한다.</h3>
-        <p>일·주·월, 카테고리별 예산을 정하면 쓸 때마다 “얼마 썼고, 얼마 남았는지”가 한눈에. 막연한 다짐이 진짜 관리로 바뀌어요.</p>
-        <ul class="feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>계산기 스타일 키패드로 한 건도 몇 번의 탭이면 끝</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>카드/현금, 일회성/반복 지출까지 구분</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="check" id="share" data-stage="2" data-level="SHARE">
-      <div class="c-media reveal"><div class="frame"><div class="glow" style="background:radial-gradient(circle,var(--transport),transparent 70%)"></div>
-        <div class="phone"><img src="ss-ledgers.webp" alt="목적별 공동 가계부 목록 화면" width="680" height="1476" loading="lazy"></div></div></div>
-      <div class="c-copy reveal" data-d="1">
-        <span class="tag" style="background:var(--transport)">SHARE</span>
-        <h3>혼자보다 둘이,<br>둘보다 함께.</h3>
-        <p>6자리 초대 코드면 파트너·가족·모임과 가계부를 함께 써요. 모든 기록은 실시간으로 동기화되고, 누가 썼는지 투명하게 남아요.</p>
-        <ul class="feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>멤버 수 제한 없음</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>나 / 다른 사람 / 공동 지출로 깔끔하게 정산</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="check" id="travel" data-stage="3" data-level="TRAVEL">
-      <div class="c-media reveal"><div class="frame"><div class="glow" style="background:radial-gradient(circle,var(--living),transparent 70%)"></div>
-        <div class="phone"><img src="ss-currency.webp" alt="다중 통화와 실시간 환율 선택 화면" width="680" height="1476" loading="lazy"></div></div></div>
-      <div class="c-copy reveal" data-d="1">
-        <span class="tag" style="background:var(--living)">TRAVEL</span>
-        <h3>어느 나라에서 써도,<br>내 통화로.</h3>
-        <p>달러·엔·유로… 전 세계 거의 모든 통화와 실시간에 가까운 환율을 지원해요. 외화로 적어도 가계부의 기본 통화로 자동 계산돼요.</p>
-        <ul class="feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>50+ 통화 · 구매 시점 환율 자동 반영</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>여행 경비도 섞이지 않게 따로</li>
-        </ul>
-      </div>
-    </article>
-
-    <article class="check" id="organize" data-stage="4" data-level="SORT">
-      <div class="c-media reveal"><div class="frame"><div class="glow" style="background:radial-gradient(circle,var(--medical),transparent 70%)"></div>
-        <div class="phone"><img src="ss-filter.webp" alt="카테고리·결제수단·주체 필터 화면" width="680" height="1476" loading="lazy"></div></div></div>
-      <div class="c-copy reveal" data-d="1">
-        <span class="tag" style="background:var(--medical)">SORT</span>
-        <h3>목적이 다르면,<br>가계부도 따로.</h3>
-        <p>여행·살림·모임처럼 용도별로 가계부를 새로 만들어 섞이지 않게. 카테고리·결제수단·지출 주체로 원하는 만큼 스마트하게 필터링해요.</p>
-        <ul class="feats">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>용도별 가계부 무제한</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>16가지 컬러로 나만의 카테고리</li>
-        </ul>
-      </div>
-    </article>
-
-  </section>
-
-  <!-- SUMMIT -->
-  <section class="summit" id="summit" data-stage="5" data-level="RICH">
-    <div class="in">
-      <div class="k reveal">이제, 첫 걸음</div>
-      <h2 class="reveal" data-d="1">작은 습관 하나가,<br><span class="g">부(富)의 시작이다.</span></h2>
-      <p class="reveal" data-d="2">거창한 결심은 작심삼일. 부자는 ‘꾸준히 지켜보는 사람’이에요. 가장 쉬운 첫 걸음을, 지금.</p>
-
-      <div class="receipt reveal" data-d="3">
-        <div class="h">W E S P E N D</div>
-        <div class="li"><span>오늘의 지출</span><span>₩0</span></div>
-        <div class="li"><span>앱 가격</span><span>무료</span></div>
-        <div class="li"><span>걸린 시간</span><span>10초</span></div>
-        <div class="tot"><span>오늘 얻은 것</span><span class="free">부자 습관 ×1</span></div>
-        <div class="bc"></div>
-        <div class="ty">THANK YOU — 결제하신 게 없으니 0원입니다 :)</div>
-      </div>
-
-      <div class="cta-row reveal" data-d="3">
-        <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-white.svg" alt="App Store에서 다운로드"></a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-links">
-    <a href="terms.html">이용약관</a>
-    <a href="privacy.html">개인정보처리방침</a>
-    <a href="support.html">고객지원</a>
-  </div>
-  <p class="co">스튜디오 태오 (Studio Taeo)</p>
-  <p class="sm">D-U-N-S® Number: 696528698</p>
-  <p class="mono">© 2026 STUDIO TAEO · MADE FOR THE FIRST STEP</p>
-</footer>
+  <footer>
+    <span>© 2026 Studio Taeo</span>
+    <span class="dot">·</span>
+    <a href="https://wespend.studiotaeo.com/privacy" target="_blank" rel="noopener">개인정보 처리방침</a>
+  </footer>
 
 <script>
 (function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ----- minimal i18n (auto-detect, fallback en). Low-maintenance: tagline only. -----
+  var T = {
+    ko:{h:'부자의 첫걸음은<br><em>스크린샷 한 장.</em>', s:'기록이 귀찮아 못 모았던 거예요. 사진 한 장이면 정리는 끝 — 이제 혼자 보지 않아도 돼요.', badge:'ko'},
+    en:{h:'Your first step to wealth<br><em>is a single screenshot.</em>', s:'You never saved because tracking was a chore. One photo and it’s sorted — and now you’re not looking alone.', badge:'en'},
+    ja:{h:'豊かさの第一歩は<br><em>スクショ一枚から。</em>', s:'記録が面倒で続かなかっただけ。写真一枚で整理は完了 — もう、ひとりで見なくていい。', badge:'en'},
+    'zh-Hans':{h:'富有的第一步<br><em>是一张截图。</em>', s:'只是记账太麻烦才没坚持。一张照片就整理好 — 现在，不用一个人盯着了。', badge:'en'},
+    es:{h:'El primer paso hacia la riqueza<br><em>es una captura.</em>', s:'No ahorrabas porque anotar cansaba. Una foto y queda ordenado — y ya no miras solo.', badge:'en'}
+  };
+  var lang = (navigator.language||'en').toLowerCase();
+  var key = lang.indexOf('zh')===0 ? 'zh-Hans'
+          : (T[lang] ? lang : (T[lang.split('-')[0]] ? lang.split('-')[0] : 'en'));
+  var t = T[key] || T.en;
+  document.documentElement.lang = key;
+  document.getElementById('h1').innerHTML = t.h;
+  document.getElementById('sub').textContent = t.s;
+  document.getElementById('badgeImg').src = 'assets/appstore-'+t.badge+'-black.svg';
 
-  // reveal on scroll
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
-  // summit gauge fill
-  var gauge = document.getElementById('gauge');
-  if(gauge){ new IntersectionObserver(function(es,o){ es.forEach(function(e){ if(e.isIntersecting){ gauge.classList.add('on'); o.disconnect(); } }); },{threshold:.4}).observe(gauge); }
-
-  // HUD : progress fill + active stage
-  var fill=document.getElementById('railfill'), pct=document.getElementById('railpct'),
-      mprog=document.getElementById('mprog'), mlv=document.getElementById('mlv'), mst=document.getElementById('mst'),
-      nodes=document.querySelectorAll('.rail-node'), nav=document.getElementById('nav');
-  var stages=[].slice.call(document.querySelectorAll('[data-stage]'));
-  var cur=-1, ticking=false;
-  function update(){
-    var max=document.documentElement.scrollHeight-window.innerHeight;
-    var p=max>0?Math.min(Math.max(window.scrollY/max,0),1):0;
-    var pp=Math.round(p*100);
-    if(fill) fill.style.height=pp+'%';
-    if(mprog) mprog.style.width=pp+'%';
-    if(pct) pct.textContent=pp+'%';
-    nav.classList.toggle('scrolled', window.scrollY>10);
-    // active stage = last stage whose top passed mid-viewport
-    var mid=window.scrollY+window.innerHeight*0.45, idx=0;
-    stages.forEach(function(s,i){ if(s.offsetTop<=mid) idx=i; });
-    if(idx!==cur){
-      cur=idx;
-      nodes.forEach(function(n,i){ n.classList.toggle('on',i===idx); n.classList.toggle('done',i<idx); });
-      var st=stages[idx];
-      if(mlv) mlv.textContent='LV.'+(idx+1);
-      if(mst) mst.textContent=st.getAttribute('data-level')||'';
-    }
-    ticking=false;
+  // ----- OS auto-detect → adapt the download hint -----
+  var ua = navigator.userAgent;
+  var isIPad = /iPad/.test(ua) || (navigator.platform==='MacIntel' && (navigator.maxTouchPoints||0) > 1);
+  var isIPhone = /iPhone|iPod/.test(ua);
+  var isMac = /Macintosh/.test(ua) && (navigator.maxTouchPoints||0) <= 1;
+  var isAndroid = /Android/.test(ua);
+  var H = {
+    ko:{apple:'iPhone과 iPad에서 만나요', mac:'Mac App Store에서도 받을 수 있어요', other:'iPhone · iPad 앱이에요. 폰에서 열어 받아주세요'},
+    en:{apple:'For iPhone & iPad', mac:'Also on the Mac App Store', other:'An iPhone & iPad app — open this on your phone'},
+    ja:{apple:'iPhoneとiPadで', mac:'Mac App Storeでも', other:'iPhone・iPad向けアプリです。スマホで開いてください'},
+    'zh-Hans':{apple:'适用于 iPhone 和 iPad', mac:'Mac App Store 也可下载', other:'这是 iPhone·iPad 应用，请在手机上打开'},
+    es:{apple:'Para iPhone y iPad', mac:'También en Mac App Store', other:'App para iPhone y iPad — ábrela en tu teléfono'}
+  };
+  var QRCAP = {
+    ko:'iPhone 카메라로 스캔하세요', en:'Scan with your iPhone camera',
+    ja:'iPhoneのカメラでスキャン', 'zh-Hans':'用 iPhone 相机扫描',
+    es:'Escanéalo con la cámara de tu iPhone'
+  };
+  var h = H[key] || H.en;
+  var hint = document.getElementById('hint');
+  if(isIPhone || isIPad){ hint.textContent = h.apple; }
+  else if(isMac){ hint.textContent = h.mac; }
+  else {
+    hint.textContent = h.other;
+    document.getElementById('qr').style.display = 'flex';
+    document.getElementById('qrcap').textContent = QRCAP[key] || QRCAP.en;
   }
-  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',onScroll); update();
-
-  // language dropdown
-  document.addEventListener('click',function(e){
-    var dd=document.querySelector('.lang-dropdown'); if(!dd) return;
-    var btn=e.target.closest('.lang-btn');
-    if(btn){ e.preventDefault(); dd.classList.toggle('show'); btn.setAttribute('aria-expanded', dd.classList.contains('show')); }
-    else if(!e.target.closest('.lang-dropdown')){ dd.classList.remove('show'); }
-  });
 })();
 </script>
 </body>
