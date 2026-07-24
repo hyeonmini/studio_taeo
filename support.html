@@ -41,16 +41,20 @@
             <dd>Create a household in the app, then share the invite code with your partner. They can join by tapping "Join with Invite Code" on the start screen.</dd>
 
             <dt>Can I use WeSpend without creating an account?</dt>
-            <dd>Yes. Tap "Browse" on the login screen to explore all features with demo data. To sync across devices or share with a partner, you'll need to sign up.</dd>
+            <dd>On Android, tap "Guest" to create an anonymous account. Keep the app installed while using a guest account because it has no separate login credential.</dd>
 
             <dt>How do I change the currency?</dt>
-            <dd>Your household's default currency is set when creating the household. You can record individual expenses in different currencies by long-pressing the currency icon on the expense entry screen.</dd>
+            <dd>Your household's default currency is set when creating the household. To record an expense in another currency, tap the currency icon on Android or long-press it on iOS.</dd>
 
             <dt>How do I delete my account?</dt>
-            <dd>Go to Settings &gt; Delete Account. All your personal data will be permanently removed.</dd>
+            <dd>
+                Go to Settings &gt; Delete Account. If you no longer have access
+                to the app, use our
+                <a href="delete-account.html">account deletion request page</a>.
+            </dd>
 
             <dt>Is my data secure?</dt>
-            <dd>Yes. WeSpend uses Firebase with TLS encryption for all data transmission and storage. We never share your financial data with third parties.</dd>
+            <dd>WeSpend uses TLS encryption and access-controlled Firebase services. Optional AI features send only the content needed to process your request to Anthropic. See the Privacy Policy for all processors and details.</dd>
         </dl>
     </div>
 
@@ -61,24 +65,12 @@
         <ul>
             <li><a href="privacy-en.html">Privacy Policy</a> / <a href="privacy.html">개인정보처리방침</a></li>
             <li><a href="terms-en.html">Terms of Service</a> / <a href="terms.html">이용약관</a></li>
+            <li><a href="delete-account.html">Account Deletion / 계정 삭제 요청</a></li>
         </ul>
     </div>
 
     <hr>
 
     <p style="color: #888; font-size: 0.85rem;">&copy; 2026 Studio Taeo. All rights reserved.</p>
-
-    <script>
-        document.addEventListener('click', function(e) {
-            const dropdown = document.querySelector('.lang-dropdown');
-            const btn = e.target.closest('.lang-switch-btn');
-            if (btn) {
-                e.preventDefault();
-                dropdown.classList.toggle('show');
-            } else if (dropdown && !e.target.closest('.lang-dropdown')) {
-                dropdown.classList.remove('show');
-            }
-        });
-    </script>
 </body>
 </html>
