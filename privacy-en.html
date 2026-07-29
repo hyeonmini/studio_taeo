@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
     <h1>WeSpend Privacy Policy</h1>
 <blockquote>
 <p><strong>Effective Date:</strong> February 18, 2026
-<strong>Last Updated:</strong> February 18, 2026</p>
+<strong>Last Updated:</strong> July 24, 2026</p>
 </blockquote>
 <hr />
 <h2>1. Introduction</h2>
@@ -97,6 +97,14 @@
 <td>Household invite codes</td>
 <td>Partner invitation feature</td>
 </tr>
+<tr>
+<td>Wonny chat content and recent-expense summaries</td>
+<td>Generate expense-entry or analysis responses requested by the user</td>
+</tr>
+<tr>
+<td>Receipt or transaction screenshots selected by the user</td>
+<td>Recognize transactions when requested by the user</td>
+</tr>
 </tbody>
 </table>
 <h3>2.3 Automatically Collected Information</h3>
@@ -113,8 +121,8 @@
 <td>Anonymous login, service provision</td>
 </tr>
 <tr>
-<td>App usage logs</td>
-<td>Service improvement, error analysis</td>
+<td>Pseudonymous user identifier (Firebase UID); expense-event attributes (amount, category, payment method, and currency); budget amounts and periods; interaction events; and app/device information</td>
+<td>Service analytics and improvement through Amplitude</td>
 </tr>
 </tbody>
 </table>
@@ -157,14 +165,22 @@
 <td>Error analysis, usability improvements</td>
 <td>Legitimate interest</td>
 </tr>
+<tr>
+<td>Optional AI Features</td>
+<td>Wonny responses and screenshot transaction recognition requested by the user</td>
+<td>Contract performance and user request</td>
+</tr>
 </tbody>
 </table>
 <hr />
 <h2>5. Data Retention</h2>
 <ul>
-<li><strong>Account deletion</strong>: Data deleted immediately upon request (except where retention is required by law)</li>
+<li><strong>Account deletion</strong>: We delete the personal profile, authentication account, personal usage records, feedback, and account-linked tokens (except where retention is required by law).</li>
 <li><strong>Service records</strong>: Retained until account deletion</li>
-<li><strong>Deleted expenses</strong>: Retained for recovery feature, permanently deleted upon account deletion</li>
+<li><strong>Shared-household records</strong>: Expenses and agent records shared with other members may remain for those members, with the deleted account's structured identifiers anonymized.</li>
+<li><strong>Deleted expenses</strong>: Retained for recovery and deleted with the household when its final member deletes their account.</li>
+<li><strong>Analytics events</strong>: Account-linked analytics already sent to Amplitude require a separate privacy deletion process. You can request that process using the contact information below.</li>
+<li><strong>Anthropic API inputs and outputs</strong>: Anthropic states that API inputs and outputs are deleted from its backend within 30 days by default. Longer retention may apply for Usage Policy enforcement, legal obligations, a service under the customer's control, or a different contractual arrangement. Paid API customers cannot request ad hoc deletion of individual API conversations.</li>
 </ul>
 <hr />
 <h2>6. Data Sharing</h2>
@@ -189,8 +205,8 @@
 <tbody>
 <tr>
 <td>Google LLC (Firebase)</td>
-<td>Cloud storage, authentication</td>
-<td>United States</td>
+<td>Cloud storage, authentication, server functions</td>
+<td>South Korea (Seoul) and United States, depending on the Firebase service region</td>
 <td>Network transfer during service use</td>
 </tr>
 <tr>
@@ -198,6 +214,18 @@
 <td>Apple Sign-In authentication</td>
 <td>United States</td>
 <td>Network transfer during Apple login</td>
+</tr>
+<tr>
+<td>Amplitude, Inc.</td>
+<td>Product analytics, including account-linked expense and budget event attributes</td>
+<td>United States</td>
+<td>Pseudonymous identifier, financial event attributes, interaction events, and app/device information transferred during app use</td>
+</tr>
+<tr>
+<td>Anthropic, PBC</td>
+<td>User-requested AI chat and screenshot transaction recognition</td>
+<td>United States</td>
+<td>Required prompts, screenshots, and expense summaries transferred when the feature is used</td>
 </tr>
 </tbody>
 </table>
@@ -208,7 +236,7 @@
 <ul>
 <li><strong>Access</strong>: Request access to your personal data</li>
 <li><strong>Rectification</strong>: Request correction of inaccurate data</li>
-<li><strong>Deletion</strong>: Request deletion of your data via account deletion</li>
+<li><strong>Deletion</strong>: Delete or anonymize account-linked data through in-app account deletion; request the separate Amplitude analytics deletion process by email</li>
 <li><strong>Restriction</strong>: Request restriction of data processing</li>
 </ul>
 <h3>EU/EEA Residents (GDPR Rights)</h3>
@@ -246,8 +274,7 @@
 <p>WeSpend is not intended for children under 16 years of age (or the applicable age of consent in your jurisdiction). We do not knowingly collect personal data from children. If we become aware that we have collected data from a child, we will delete it promptly.</p>
 <hr />
 <h2>11. Cookies and Tracking</h2>
-<p>The WeSpend app does not use web cookies. We may collect anonymized usage statistics through Firebase Analytics for service improvement purposes only.</p>
-<p><strong>Tracking Opt-Out</strong>: You can deny app tracking permission in your iOS device settings.</p>
+<p>The WeSpend app does not use web cookies. The app uses Amplitude to collect a pseudonymous Firebase UID; expense-event attributes such as amount, category, payment method, and currency; budget amounts and periods; interaction events; and app/device information for service analytics and improvement. You may object to this processing or request deletion of analytics data using the contact information below.</p>
 <hr />
 <h2>12. Changes to This Policy</h2>
 <p>We may update this Privacy Policy from time to time. For material changes, we will provide at least 30 days' notice via in-app notification or email before the changes take effect.</p>
@@ -272,19 +299,6 @@
 <li>Personal Information Dispute Mediation Committee: 1833-6972, https://www.kopico.go.kr</li>
 </ul>
 <hr />
-<p><em>This Privacy Policy is effective as of February 18, 2026.</em></p>
-
-    <script>
-        document.addEventListener('click', function(e) {
-            const dropdown = document.querySelector('.lang-dropdown');
-            const btn = e.target.closest('.lang-switch-btn');
-            if (btn) {
-                e.preventDefault();
-                dropdown.classList.toggle('show');
-            } else if (dropdown && !e.target.closest('.lang-dropdown')) {
-                dropdown.classList.remove('show');
-            }
-        });
-    </script>
+<p><em>This Privacy Policy is effective as of February 18, 2026 and was last updated on July 24, 2026.</em></p>
 </body>
 </html>
