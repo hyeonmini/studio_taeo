@@ -190,7 +190,7 @@
 <li><strong>Deleted expenses</strong>: Retained for recovery and deleted with the household when its final member deletes their account.</li>
 <li><strong>Analytics events</strong>: Account-linked analytics already sent to Amplitude require a separate privacy deletion process. You can request that process using the contact information below.</li>
 <li><strong>Anthropic API inputs and outputs</strong>: Anthropic states that API inputs and outputs are deleted from its backend within 30 days by default. Longer retention may apply for Usage Policy enforcement, legal obligations, a service under the customer's control, or a different contractual arrangement. Paid API customers cannot request ad hoc deletion of individual API conversations.</li>
-<li><strong>Slack operational alerts</strong>: Detailed alerts waiting for delivery remain in the Firebase outbox for up to 30 days, and the outbox body copy is deleted after delivery. Messages delivered to Slack are retained according to the operations workspace's message-retention settings and are not automatically deleted by in-app account deletion. You may request deletion or restriction using the contact details below.</li>
+<li><strong>Slack operational alerts</strong>: Detailed alerts waiting for delivery remain in the Firebase outbox for up to 30 days, and the outbox body copy is deleted after delivery. Messages delivered to Slack remain until the earlier of the workspace retention policy or administrator deletion. If no custom period is configured, Slack's plan default applies (the selected 90-day or one-year option on free plans, and the workspace lifetime by default on paid plans). In-app account deletion does not automatically delete them. You may request deletion or restriction using the contact details below.</li>
 </ul>
 <hr />
 <h2>6. Data Sharing</h2>
@@ -238,9 +238,9 @@
 <td>Required prompts, screenshots, and expense summaries transferred when the feature is used</td>
 </tr>
 <tr>
-<td>Slack Technologies, LLC (Salesforce)</td>
+<td>Slack Technologies Limited (Salesforce; Slack Technologies, LLC for US and Canadian customers)</td>
 <td>Operational support and backend event monitoring</td>
-<td>United States by default, or the region selected through workspace data residency</td>
+<td>Ireland (processing entity for customers outside the US and Canada), the United States (default data storage), or the workspace's selected data-residency region</td>
 <td>Sign-up account information, full feedback and submission details, expense details, the first AI request/response and proposed expense, and verified purchase metadata transferred by HTTPS Incoming Webhook when the event occurs</td>
 </tr>
 </tbody>
