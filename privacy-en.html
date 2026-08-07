@@ -27,7 +27,7 @@
     <h1>WeSpend Privacy Policy</h1>
 <blockquote>
 <p><strong>Effective Date:</strong> February 18, 2026
-<strong>Last Updated:</strong> August 6, 2026</p>
+<strong>Last Updated:</strong> August 7, 2026</p>
 </blockquote>
 <hr />
 <h2>1. Introduction</h2>
@@ -176,7 +176,7 @@
 </tr>
 <tr>
 <td>Operational Support and Event Monitoring</td>
-<td>Review detailed sign-up, feedback, expense, first AI chat, and purchase events in a restricted-access Slack operations channel</td>
+<td>Review detailed sign-up, feedback, first AI chat, and purchase events plus hourly expense summaries in a restricted-access Slack operations channel, and send the corresponding expense details when an operator requests them</td>
 <td>Legitimate interest</td>
 </tr>
 </tbody>
@@ -190,7 +190,7 @@
 <li><strong>Deleted expenses</strong>: Retained for recovery and deleted with the household when its final member deletes their account.</li>
 <li><strong>Analytics events</strong>: Account-linked analytics already sent to Amplitude require a separate privacy deletion process. You can request that process using the contact information below.</li>
 <li><strong>Anthropic API inputs and outputs</strong>: Anthropic states that API inputs and outputs are deleted from its backend within 30 days by default. Longer retention may apply for Usage Policy enforcement, legal obligations, a service under the customer's control, or a different contractual arrangement. Paid API customers cannot request ad hoc deletion of individual API conversations.</li>
-<li><strong>Slack operational alerts</strong>: Detailed alerts waiting for delivery remain in the Firebase outbox for up to 30 days, and the outbox body copy is deleted after delivery. Messages delivered to Slack remain until the earlier of the workspace retention policy or administrator deletion. If no custom period is configured, Slack's plan default applies (the selected 90-day or one-year option on free plans, and the workspace lifetime by default on paid plans). In-app account deletion does not automatically delete them. You may request deletion or restriction using the contact details below.</li>
+<li><strong>Slack operational alerts</strong>: Detailed sign-up, feedback, first AI chat, and purchase alerts enter the delivery queue immediately. Expenses are first sent as one hourly summary; details for that hour are sent only after an operator confirms a one-time Slack link. The link is valid for up to seven days. A temporary rich expense body is removed when queued for detailed delivery, and unrequested bodies are scheduled for purging after eight days. Bodies belonging to a request accepted before that cutoff may be protected until processing completes or the request's seven-day deadline. Body-free deduplication and control documents become eligible for Firebase TTL deletion within 30 days (actual deletion may be delayed). Slack outbox bodies remain for up to 30 days and are removed after delivery or permanent failure. Messages delivered to Slack remain until the earlier of the workspace retention policy or administrator deletion. In-app account deletion does not automatically delete them. You may request deletion or restriction using the contact details below.</li>
 </ul>
 <hr />
 <h2>6. Data Sharing</h2>
@@ -241,7 +241,7 @@
 <td>Slack Technologies Limited (Salesforce; Slack Technologies, LLC for US and Canadian customers)</td>
 <td>Operational support and backend event monitoring</td>
 <td>Ireland (processing entity for customers outside the US and Canada), the United States (default data storage), or the workspace's selected data-residency region</td>
-<td>Sign-up account information, full feedback and submission details, expense details, the first AI request/response and proposed expense, and verified purchase metadata transferred by HTTPS Incoming Webhook when the event occurs</td>
+<td>Sign-up account information, full feedback and submission details, the first AI request/response and proposed expense, and verified purchase metadata are transferred by HTTPS Incoming Webhook when the event occurs; expense counts and per-currency totals are transferred hourly, and expense details are transferred only when an operator requests them through the one-time link</td>
 </tr>
 </tbody>
 </table>
@@ -315,6 +315,6 @@
 <li>Personal Information Dispute Mediation Committee: 1833-6972, https://www.kopico.go.kr</li>
 </ul>
 <hr />
-<p><em>This Privacy Policy is effective as of February 18, 2026 and was last updated on August 6, 2026.</em></p>
+<p><em>This Privacy Policy is effective as of February 18, 2026 and was last updated on August 7, 2026.</em></p>
 </body>
 </html>
