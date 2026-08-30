@@ -89,7 +89,10 @@ nav.scrolled{border-bottom:1px solid var(--line)}
 .appstore img{height:54px;width:auto;display:block}
 .appstore.sm img{height:34px}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 22px;border-radius:99px;font-weight:700;
-  border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px}
+  border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px;text-decoration:none;
+  cursor:pointer;transition:transform .25s ease,filter .25s ease,border-color .25s ease}
+.btn-ghost:hover{transform:translateY(-3px);filter:drop-shadow(0 12px 22px rgba(20,16,10,.18));border-color:rgba(28,24,20,.28)}
+.btn-ghost:focus-visible{outline:3px solid rgba(217,169,58,.45);outline-offset:3px}
 .btn-ghost .dot{font-size:11px;font-family:var(--mono);background:var(--paper-3);padding:3px 7px;border-radius:99px}
 
 /* ---------- HUD rail (desktop) ---------- */
@@ -313,7 +316,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <p class="sub reveal" data-d="2">Izvēlies foto vai ekrānuzņēmumu — tēriņi paši sakārtojas budžetā.<br>Bez bankas saistīšanas. Bez rakstīšanas.</p>
     <div class="cta-row reveal" data-d="3">
       <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="Lejupielādē App Store"></a>
-      <span class="btn-ghost">Google Play <span class="dot">Drīzumā</span></span>
+      <a class="btn-ghost googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener">Google Play</a>
     </div>
 
     <div class="demo reveal" data-d="2">
@@ -431,6 +434,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
 
       <div class="cta-row reveal" data-d="3">
         <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-white.svg" alt="Lejupielādē App Store"></a>
+        <a class="btn-ghost googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener">Google Play</a>
       </div>
     </div>
   </section>

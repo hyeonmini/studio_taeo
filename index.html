@@ -89,7 +89,10 @@ nav.scrolled{border-bottom:1px solid var(--line)}
 .appstore img{height:54px;width:auto;display:block}
 .appstore.sm img{height:34px}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 22px;border-radius:99px;font-weight:700;
-  border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px}
+  border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px;text-decoration:none;
+  cursor:pointer;transition:transform .25s ease,filter .25s ease,border-color .25s ease}
+.btn-ghost:hover{transform:translateY(-3px);filter:drop-shadow(0 12px 22px rgba(20,16,10,.18));border-color:rgba(28,24,20,.28)}
+.btn-ghost:focus-visible{outline:3px solid rgba(217,169,58,.45);outline-offset:3px}
 .btn-ghost .dot{font-size:11px;font-family:var(--mono);background:var(--paper-3);padding:3px 7px;border-radius:99px}
 /* download QR (desktop only) + OS-specific affordances */
 .qrbox{display:none;flex-direction:column;align-items:center;gap:11px;margin:24px auto 0;width:max-content;
@@ -320,7 +323,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <p class="sub reveal" data-d="2">사진이나 스크린샷만 고르면 지출이 저절로 가계부로 정리돼요.<br>계좌·카드 연동도, 타이핑도 없이.</p>
     <div class="cta-row reveal" data-d="3">
       <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store에서 다운로드"></a>
-      <span class="btn-ghost">Google Play <span class="dot">곧</span></span>
+      <a class="btn-ghost googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener">Google Play</a>
     </div>
     <div class="qrbox reveal" data-d="3">
       <img src="assets/qr-appstore.svg" alt="App Store QR 코드" width="122" height="122">
@@ -434,7 +437,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
 
       <div class="cta-row reveal" data-d="3">
         <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-white.svg" alt="App Store에서 다운로드"></a>
-        <span class="btn-ghost">Google Play <span class="dot">곧</span></span>
+        <a class="btn-ghost googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener">Google Play</a>
       </div>
       <div class="qrbox reveal" data-d="3">
         <img src="assets/qr-appstore.svg" alt="App Store QR 코드" width="122" height="122">
@@ -459,7 +462,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // OS detection → download affordances (PC: QR, iOS: App Store, Android: Google Play soon)
+  // OS detection → download affordances (PC: QR, iOS: App Store, Android: Google Play)
   (function(){
     var ua=navigator.userAgent, mtp=navigator.maxTouchPoints||0;
     var isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&mtp>1);
