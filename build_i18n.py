@@ -52,7 +52,7 @@ texts_to_translate = [
     "Terms of Service",
     "Privacy Policy",
     "Download on the App Store",
-    "Google Play Coming Soon"
+    "Get it on Google Play"
 ]
 
 def build():
