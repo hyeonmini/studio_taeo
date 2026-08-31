@@ -66,15 +66,18 @@ nav{position:sticky;top:0;z-index:60;backdrop-filter:saturate(140%) blur(10px);
   background:rgba(251,247,238,.72);border-bottom:1px solid transparent;transition:border-color .3s}
 nav.scrolled{border-bottom:1px solid var(--line)}
 .nav-in{max-width:1140px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:-.02em;flex:none}
 .brand .mark{width:29px;height:29px;border-radius:8px;overflow:hidden;box-shadow:0 4px 12px rgba(176,126,31,.28)}
 .brand .mark img{width:100%;height:100%;object-fit:cover;display:block}
-.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-actions{display:flex;align-items:center;gap:10px;min-width:0}
 
 /* language switcher */
-.lang{position:relative}
+.lang{position:relative;min-width:0}
 .lang-btn{font-family:var(--mono);font-size:12px;font-weight:700;padding:8px 12px;border-radius:99px;
-  background:var(--paper-2);border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+  background:var(--paper-2);border:1px solid var(--line);cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--ink-2);
+  max-width:100%;white-space:nowrap;flex-wrap:nowrap}
+.lang-btn .lang-icon,.lang-btn .lang-caret{flex:none}
+.lang-btn .lang-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .lang-btn:hover{background:var(--paper-3)}
 .lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1px solid var(--line);
   border-radius:14px;min-width:170px;max-height:340px;overflow-y:auto;list-style:none;display:none;z-index:100;
@@ -88,6 +91,16 @@ nav.scrolled{border-bottom:1px solid var(--line)}
 .appstore:hover{transform:translateY(-3px);filter:drop-shadow(0 12px 22px rgba(20,16,10,.25))}
 .appstore img{height:54px;width:auto;display:block}
 .appstore.sm img{height:34px}
+@media(max-width:560px){
+  .nav-in{padding:12px 14px;gap:8px}
+  .brand{gap:7px;font-size:18px}
+  .brand .mark{width:27px;height:27px}
+  .nav-actions{gap:6px}
+  .lang-btn{padding:7px 9px;gap:4px}
+  .appstore.sm img{height:30px}
+  .hero h1 .g{overflow-wrap:anywhere}
+}
+@media(max-width:360px){.nav-actions>.appstore.sm{display:none}}
 .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 22px;border-radius:99px;font-weight:700;
   border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px;text-decoration:none;
   cursor:pointer;transition:transform .25s ease,filter .25s ease,border-color .25s ease}
@@ -260,7 +273,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <div class="brand"><span class="mark"><img src="../assets/icon.png" alt="WeSpend" width="29" height="29"></span>WeSpend</div>
     <div class="nav-actions">
       <div class="lang">
-        <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false">🌐 עברית ▾</button>
+        <button class="lang-btn" aria-haspopup="listbox" aria-expanded="false"><span class="lang-icon" aria-hidden="true">🌐</span><span class="lang-name">עברית</span><span class="lang-caret" aria-hidden="true">▾</span></button>
         <ul class="lang-dropdown" role="listbox">
     <li role="option"><a href="/">한국어</a></li>
     <li role="option"><a href="/en/">English</a></li>
