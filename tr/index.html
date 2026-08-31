@@ -87,26 +87,24 @@ nav.scrolled{border-bottom:1px solid var(--line)}
 .lang-dropdown li a:hover{background:var(--paper-2);color:var(--ink)}
 
 /* ---------- buttons ---------- */
-.appstore{display:inline-block;line-height:0;border-radius:9px;transition:transform .25s ease,filter .25s ease}
-.appstore:hover{transform:translateY(-3px);filter:drop-shadow(0 12px 22px rgba(20,16,10,.25))}
-.appstore img{height:54px;width:auto;display:block}
-.appstore.sm img{height:34px}
+.store-badge{display:inline-block;line-height:0;border-radius:9px;transition:transform .25s ease}
+.store-badge:hover{transform:translateY(-3px)}
+.store-badge:focus-visible{outline:3px solid rgba(217,169,58,.45);outline-offset:3px}
+.store-badge img{height:54px;width:auto;display:block}
+.store-badge.sm img{height:34px}
+.store-links{display:flex;align-items:center;justify-content:center;gap:8px}
+body.is-android .store-links .googleplay,body.is-android .cta-row .googleplay{order:-1}
 @media(max-width:560px){
-  .nav-in{padding:12px 14px;gap:8px}
+  .nav-in{padding:12px 14px;gap:8px;flex-wrap:wrap}
   .brand{gap:7px;font-size:18px}
   .brand .mark{width:27px;height:27px}
-  .nav-actions{gap:6px}
+  .nav-actions{display:contents}
+  .lang{margin-inline-start:auto}
+  .nav-store-links{width:100%}
   .lang-btn{padding:7px 9px;gap:4px}
-  .appstore.sm img{height:30px}
+  .store-badge.sm img{height:30px}
   .hero h1 .g{overflow-wrap:anywhere}
 }
-@media(max-width:360px){.nav-actions>.appstore.sm{display:none}}
-.btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:15px 22px;border-radius:99px;font-weight:700;
-  border:1.5px solid var(--line);color:var(--ink-2);background:transparent;font-size:14px;text-decoration:none;
-  cursor:pointer;transition:transform .25s ease,filter .25s ease,border-color .25s ease}
-.btn-ghost:hover{transform:translateY(-3px);filter:drop-shadow(0 12px 22px rgba(20,16,10,.18));border-color:rgba(28,24,20,.28)}
-.btn-ghost:focus-visible{outline:3px solid rgba(217,169,58,.45);outline-offset:3px}
-.btn-ghost .dot{font-size:11px;font-family:var(--mono);background:var(--paper-3);padding:3px 7px;border-radius:99px}
 
 /* ---------- HUD rail (desktop) ---------- */
 .rail{position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:50;width:120px;display:none}
@@ -315,7 +313,10 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <li role="option"><a href="/zh-Hant/">繁體中文</a></li>
 </ul>
       </div>
-      <a class="appstore sm" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store’dan indir"></a>
+      <div class="store-links nav-store-links">
+        <a class="store-badge appstore sm" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store’dan indir"></a>
+        <a class="store-badge googleplay sm" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener"><img src="../assets/google-play.svg" alt="Get it on Google Play"></a>
+      </div>
     </div>
   </div>
 </nav>
@@ -328,8 +329,8 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
     <h1 class="reveal" data-d="1">Gönül rahatlığı başlar<br><span class="g">tek ekran görüntüsüyle.</span></h1>
     <p class="sub reveal" data-d="2">Bir fotoğraf ya da ekran görüntüsü seç — harcaman bütçene kendiliğinden yerleşir.<br>Banka bağlama yok. Yazma yok.</p>
     <div class="cta-row reveal" data-d="3">
-      <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store’dan indir"></a>
-      <a class="btn-ghost googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener">Google Play</a>
+      <a class="store-badge appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-black.svg" alt="App Store’dan indir"></a>
+      <a class="store-badge googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener"><img src="../assets/google-play.svg" alt="Get it on Google Play"></a>
     </div>
 
     <div class="demo reveal" data-d="2">
@@ -446,8 +447,8 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
       </div>
 
       <div class="cta-row reveal" data-d="3">
-        <a class="appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-white.svg" alt="App Store’dan indir"></a>
-        <a class="btn-ghost googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener">Google Play</a>
+        <a class="store-badge appstore" href="https://apps.apple.com/app/id6760176874" target="_blank" rel="noopener"><img src="appstore-white.svg" alt="App Store’dan indir"></a>
+        <a class="store-badge googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener"><img src="../assets/google-play.svg" alt="Get it on Google Play"></a>
       </div>
     </div>
   </section>
@@ -467,6 +468,14 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
 <script>
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Always show both stores; put the current device's store first.
+  (function(){
+    var ua=navigator.userAgent, mtp=navigator.maxTouchPoints||0;
+    var isIOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==='MacIntel'&&mtp>1);
+    var isAndroid=/Android/.test(ua);
+    document.body.classList.add(isIOS?'is-ios':isAndroid?'is-android':'is-pc');
+  })();
 
   // reveal on scroll
   var io = new IntersectionObserver(function(es){

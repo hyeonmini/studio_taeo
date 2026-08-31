@@ -3,6 +3,7 @@
 
 Per locale it writes <dir>/index.html, localized screenshots (ss-*.webp),
 and the official Apple App Store badges (appstore-black.svg / appstore-white.svg).
+The official Google Play web badge is shared from assets/google-play.svg.
 
 Usage:
     python3 scripts/build_site.py                 # all locales, full build
@@ -16,8 +17,6 @@ import json
 import glob
 import time
 import urllib.request
-
-from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -128,6 +127,8 @@ def fill(tpl, loc, s):
 
 # ----------------------------- assets -----------------------------
 def build_screenshots(loc, force):
+    from PIL import Image
+
     src = os.path.join(SS_SRC, loc["fl"])
     if not os.path.isdir(src):
         src = os.path.join(SS_SRC, "en-US")  # lt/lv etc.
