@@ -27,7 +27,7 @@
     <h1>WeSpend Privacy Policy</h1>
 <blockquote>
 <p><strong>Effective Date:</strong> February 18, 2026
-<strong>Last Updated:</strong> August 7, 2026</p>
+<strong>Last Updated:</strong> September 3, 2026</p>
 </blockquote>
 <hr />
 <h2>1. Introduction</h2>
@@ -106,8 +106,24 @@
 <td>Recognize transactions when requested by the user</td>
 </tr>
 <tr>
+<td>Agent connection data (display name, Household, scopes, issue/expiry/revocation/last-used times, and hashed credential)</td>
+<td>Authenticate, limit, audit, and revoke an external Agent authorized by the user</td>
+</tr>
+<tr>
+<td>Agent expenses and provenance (amount, currency, category, memo, transaction/recorded times, service, tool, run, payment rail, and invoice URL)</td>
+<td>Record and retrieve costs incurred by an Agent and let Household members audit them</td>
+</tr>
+<tr>
+<td>Optional Household aggregate summary (totals and counts by currency, category, and Human/Agent expense type)</td>
+<td>Provide user-authorized spending analysis without exposing individual expense rows</td>
+</tr>
+<tr>
 <td>Feedback type and content, plus app version, OS version, and device model at submission</td>
 <td>Respond to inquiries, diagnose issues, and improve the service</td>
+</tr>
+<tr>
+<td>Optional product-research responses (campaign and locale, light answers, interview transcript, and user-confirmed summary)</td>
+<td>Conduct research the user chooses to join and improve WeSpend</td>
 </tr>
 </tbody>
 </table>
@@ -136,6 +152,7 @@
 <li>Direct input during registration and login</li>
 <li>Social login via Apple Sign-In or Google Sign-In</li>
 <li>Automatic generation during app usage</li>
+<li>Submission through MCP, API, or CLI by an external Agent connected with a user-issued, scope-limited credential</li>
 </ul>
 <hr />
 <h2>4. How We Use Your Information</h2>
@@ -170,13 +187,33 @@
 <td>Legitimate interest</td>
 </tr>
 <tr>
+<td>Optional Product Research</td>
+<td>Invite selected users, record only responses they choose to submit, and summarize an optional follow-up interview</td>
+<td>Consent and user request</td>
+</tr>
+<tr>
 <td>Optional AI Features</td>
 <td>Wonny responses and screenshot transaction recognition requested by the user</td>
 <td>Contract performance and user request</td>
 </tr>
 <tr>
+<td>Agent Expense Ledger</td>
+<td>Record costs incurred by a user-connected Agent in the same Household ledger and let members distinguish, review, and audit them</td>
+<td>Contract performance and user request</td>
+</tr>
+<tr>
+<td>Optional Household Summary Analysis</td>
+<td>When explicitly enabled by the current owner of a one-person Household, calculate aggregate-only spending totals without returning individual expense rows</td>
+<td>Contract performance and user request</td>
+</tr>
+<tr>
+<td>Agent Connection Security</td>
+<td>Issue, hash, expire, revoke, rate-limit, and audit least-privilege credentials bound to one Household</td>
+<td>Contract performance and legitimate interest</td>
+</tr>
+<tr>
 <td>Operational Support and Event Monitoring</td>
-<td>Review detailed sign-up, feedback, first AI chat, and purchase events plus hourly expense summaries in a restricted-access Slack operations channel, and send the corresponding expense details when an operator requests them</td>
+<td>Review sign-up, feedback, first AI chat, and purchase alerts plus hourly expense summaries in event-specific, restricted-access Slack operations channels, and review currently retained expense, feedback, sign-up, AI-session, and purchase records in a private operations console</td>
 <td>Legitimate interest</td>
 </tr>
 </tbody>
@@ -187,10 +224,13 @@
 <li><strong>Account deletion</strong>: We delete the personal profile, authentication account, personal usage records, feedback, and account-linked tokens (except where retention is required by law).</li>
 <li><strong>Service records</strong>: Retained until account deletion</li>
 <li><strong>Shared-household records</strong>: Expenses and agent records shared with other members may remain for those members, with the deleted account's structured identifiers anonymized.</li>
+<li><strong>Agent credentials</strong>: A plaintext token is shown once immediately after issuance and is not stored. Its hash is retained during the life of the account for revocation, security audit, and duplicate-use protection, and account-linked token documents are deleted on account deletion. Agent expenses and their minimal provenance receipt may remain for other members of a shared Household.</li>
+<li><strong>Optional product research</strong>: A campaign stores its configured retention period, from 1 to 365 days. A response receives its deletion date when the invitation is claimed and becomes eligible for the hourly purge at that date. Account deletion removes the account's research target, response, transcript, summary, and context; a short-lived hashed deletion guard prevents delayed events from recreating that context.</li>
 <li><strong>Deleted expenses</strong>: Retained for recovery and deleted with the household when its final member deletes their account.</li>
 <li><strong>Analytics events</strong>: Account-linked analytics already sent to Amplitude require a separate privacy deletion process. You can request that process using the contact information below.</li>
-<li><strong>Anthropic API inputs and outputs</strong>: Anthropic states that API inputs and outputs are deleted from its backend within 30 days by default. Longer retention may apply for Usage Policy enforcement, legal obligations, a service under the customer's control, or a different contractual arrangement. Paid API customers cannot request ad hoc deletion of individual API conversations.</li>
-<li><strong>Slack operational alerts</strong>: Detailed sign-up, feedback, first AI chat, and purchase alerts enter the delivery queue immediately. Expenses are first sent as one hourly summary; details for that hour are sent only after an operator confirms a one-time Slack link. The link is valid for up to seven days. A temporary rich expense body is removed when queued for detailed delivery, and unrequested bodies are scheduled for purging after eight days. Bodies belonging to a request accepted before that cutoff may be protected until processing completes or the request's seven-day deadline. Body-free deduplication and control documents become eligible for Firebase TTL deletion within 30 days (actual deletion may be delayed). Slack outbox bodies remain for up to 30 days and are removed after delivery or permanent failure. Messages delivered to Slack remain until the earlier of the workspace retention policy or administrator deletion. In-app account deletion does not automatically delete them. You may request deletion or restriction using the contact details below.</li>
+<li><strong>Anthropic API inputs and outputs</strong>: When the user requests Wonny, screenshot recognition, or an optional research follow-up, WeSpend sends only the content needed for that request. Anthropic states that API inputs and outputs are deleted from its backend within 30 days by default. Longer retention may apply for Usage Policy enforcement, legal obligations, a service under the customer's control, or a different contractual arrangement. Paid API customers cannot request ad hoc deletion of individual API conversations.</li>
+<li><strong>Slack operational alerts</strong>: Detailed sign-up, feedback, first AI chat, and purchase alerts enter the delivery queue immediately. Expenses are sent only as one hourly count and per-currency summary with a link to the private operations console; expense details are not sent back to Slack. Slack outbox bodies remain for up to 30 days and are removed after delivery or permanent failure. Body-free deduplication and control records from the retired detail-request flow, along with temporary expense-alert bodies, become eligible for Firebase TTL deletion within 30 days (actual deletion may be delayed). Messages delivered to Slack remain until the earlier of the workspace retention policy or administrator deletion. In-app account deletion does not automatically delete them. You may request deletion or restriction using the contact details below.</li>
+<li><strong>Private operations console</strong>: We do not create a separate full-activity replica database. When an authorized operator requests a view, the console returns only permitted fields from source records currently retained in Firebase Authentication and Firestore. Deleted, anonymized, or purged source content cannot be reconstructed. A minimal server-only index linking a Slack hourly batch to its source expense (batch, source path, and server-recorded time) is stored under that expense and is removed when the household source is deleted. Access audit records contain only hashes of the operator identifier and email plus minimal query metadata and become eligible for TTL deletion after 30 days.</li>
 </ul>
 <hr />
 <h2>6. Data Sharing</h2>
@@ -199,6 +239,7 @@
 <li><strong>With your consent</strong>: When you explicitly agree to share</li>
 <li><strong>Legal requirements</strong>: When required by law or legal process</li>
 <li><strong>Shared household</strong>: With partners you connect via invite code (core service feature)</li>
+<li><strong>External Agent connected by the user</strong>: By default, the Agent may retrieve only expenses recorded by that same Agent connection. If the user separately enables <code>household_expense:read:summary</code>, the default own-expense access remains active and the optional scope adds aggregate-only Household analysis. It is available only while the authorizing user is the current owner and sole member of the credential-bound Household. That optional scope returns aggregate totals and counts by currency, category, and Human/Agent expense type, plus the selected period's start and end boundaries; it does not return individual expense rows or individual expense timestamps, memos, merchants or vendors, invoices, tool or run identifiers, member data, or expense/category/member identifiers, and it grants no edit or delete access. The server rechecks ownership and membership on every request, fails closed, and permanently revokes the optional grant when either changes. It returns no partial result when the bounded scan exceeds 2,000 records or the Household has more than 100 total category records, including archived categories.</li>
 </ol>
 <hr />
 <h2>7. Data Processors and International Transfers</h2>
@@ -241,7 +282,13 @@
 <td>Slack Technologies Limited (Salesforce; Slack Technologies, LLC for US and Canadian customers)</td>
 <td>Operational support and backend event monitoring</td>
 <td>Ireland (processing entity for customers outside the US and Canada), the United States (default data storage), or the workspace's selected data-residency region</td>
-<td>Sign-up account information, full feedback and submission details, the first AI request/response and proposed expense, and verified purchase metadata are transferred by HTTPS Incoming Webhook when the event occurs; expense counts and per-currency totals are transferred hourly, and expense details are transferred only when an operator requests them through the one-time link</td>
+<td>Sign-up account information, full feedback and submission details, the first AI request/response and proposed expense, and verified purchase metadata are transferred to event-specific operations channels through the HTTPS Slack Web API when the event occurs; expense counts, per-currency totals, and a private-console link are transferred hourly to the expense channel through an HTTPS Incoming Webhook</td>
+</tr>
+<tr>
+<td>OpenAI OpCo, LLC or OpenAI Ireland Ltd. (ChatGPT Sites)</td>
+<td>Hosting, authentication, maintenance, and support for the access-restricted private operations console</td>
+<td>United States, Ireland, and locations identified in OpenAI's sub-processor list</td>
+<td>When an authorized operator opens the console, permitted fields from currently retained operations records are transmitted by HTTPS for display; the console does not maintain a separate activity database</td>
 </tr>
 </tbody>
 </table>
@@ -315,6 +362,6 @@
 <li>Personal Information Dispute Mediation Committee: 1833-6972, https://www.kopico.go.kr</li>
 </ul>
 <hr />
-<p><em>This Privacy Policy is effective as of February 18, 2026 and was last updated on August 7, 2026.</em></p>
+<p><em>This Privacy Policy is effective as of February 18, 2026 and was last updated on September 3, 2026.</em></p>
 </body>
 </html>
