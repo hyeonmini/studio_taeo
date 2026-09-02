@@ -3,7 +3,7 @@
 
 Per locale it writes <dir>/index.html, localized screenshots (ss-*.webp),
 and the official Apple App Store badges (appstore-black.svg / appstore-white.svg).
-The official Google Play web badge is shared from assets/google-play.svg.
+Official localized Google Play web badges are shared from assets/google-play/.
 
 Usage:
     python3 scripts/build_site.py                 # all locales, full build
@@ -119,6 +119,7 @@ def fill(tpl, loc, s):
     h = h.replace("%%PRIVACY_FILE%%", privacy)
     h = h.replace("%%SUPPORT_FILE%%", "support.html")
     h = h.replace("%%P%%", p)
+    h = h.replace("%%PLAY_LOCALE%%", loc["fl"])
     # content keys, longest marker first (avoids any prefix overlap)
     for k in sorted(KEYS, key=len, reverse=True):
         h = h.replace(f"%%{k}%%", s.get(k, STRINGS["en"][k]))
