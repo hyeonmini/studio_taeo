@@ -103,14 +103,15 @@ body.is-android .store-links .googleplay,body.is-android .cta-row .googleplay{or
   .nav-store-links{width:100%}
   .lang-btn{padding:7px 9px;gap:4px}
   .store-badge.sm img{height:30px}
+  .qrbox{display:none!important}
   .hero h1 .g{overflow-wrap:anywhere}
 }
 /* download QR (desktop only) + OS-specific affordances */
-.qrbox{display:none;flex-direction:column;align-items:center;gap:11px;margin:24px auto 0;width:max-content;
-  background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 18px 14px;box-shadow:0 16px 36px -18px rgba(60,45,15,.42)}
-.qrbox img{width:122px;height:122px;display:block}
-.qrbox .qrcap{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:.02em;text-align:center;line-height:1.55}
-body.is-pc .qrbox{display:inline-flex}
+.qrbox{display:none;align-items:center;gap:12px;margin:20px auto 0;width:max-content;
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 14px 9px 9px;box-shadow:0 12px 28px -20px rgba(60,45,15,.48)}
+.qrbox img{width:76px;height:76px;display:block;border-radius:8px}
+.qrbox .qrcap{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:.02em;text-align:start;line-height:1.55}
+body.is-pc .qrbox{display:flex;margin-top:20px}
 
 /* ---------- HUD rail (desktop) ---------- */
 .rail{position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:50;width:120px;display:none}
@@ -336,7 +337,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
       <a class="store-badge googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener"><img src="assets/google-play/ko.svg" alt="Get it on Google Play"></a>
     </div>
     <div class="qrbox reveal" data-d="3">
-      <img src="assets/qr-appstore.svg" alt="App Store QR 코드" width="122" height="122">
+      <img src="assets/qr-appstore.svg" alt="App Store QR 코드" width="76" height="76">
       <span class="qrcap">iPhone 카메라로 스캔하면<br>App Store로 이어져요</span>
     </div>
 
@@ -450,7 +451,7 @@ footer .mono{margin-top:18px;font-size:11px;opacity:.4}
         <a class="store-badge googleplay" href="https://play.google.com/store/apps/details?id=com.studiotaeo.wespend" target="_blank" rel="noopener"><img src="assets/google-play/ko.svg" alt="Get it on Google Play"></a>
       </div>
       <div class="qrbox reveal" data-d="3">
-        <img src="assets/qr-appstore.svg" alt="App Store QR 코드" width="122" height="122">
+        <img src="assets/qr-appstore.svg" alt="App Store QR 코드" width="76" height="76">
         <span class="qrcap">iPhone 카메라로 스캔하면<br>App Store로 이어져요</span>
       </div>
     </div>
